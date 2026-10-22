@@ -1,0 +1,17 @@
+{
+  "name": "journal-style",
+  "description": "Format and check figures and regression tables for sociology and demography journals (ASR, AJS, Social Forces, Demography, PNAS).",
+  "owner": {
+    "name": "letitbk"
+  },
+  "plugins": [
+    {
+      "name": "journal-style",
+      "source": "./",
+      "description": "Format and check figures and regression tables for sociology and demography journals (ASR, AJS, Social Forces, Demography, PNAS).",
+      "author": {
+        "name": "Byungkyu Lee"
+      }
+    }
+  ]
+}

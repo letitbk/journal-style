@@ -1,0 +1,11 @@
+{
+  "name": "journal-style",
+  "version": "1.0.0",
+  "description": "Format and check figures and regression tables for sociology and demography journals (ASR, AJS, Social Forces, Demography, PNAS).",
+  "author": {
+    "name": "Byungkyu Lee"
+  },
+  "homepage": "https://github.com/letitbk/journal-style",
+  "repository": "https://github.com/letitbk/journal-style",
+  "license": "MIT"
+}
