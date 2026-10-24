@@ -1,0 +1,13 @@
+
+Linting PNAS_csv.html  against  PNAS
+--------------------------------------------------------
+  ✓ [PASS] caption: Caption / table number present.
+  ✓ [PASS] uncertainty: SE/CI in parentheses present.
+  ✓ [PASS] stars: Significance stars present.
+  ✓ [PASS] stars-leading-zero: Star legend leading-zero style matches journal.
+  ✓ [PASS] sample-size: N / observations reported.
+  ✓ [PASS] note: Table note present.
+  ✓ [PASS] decimals: Modal decimals = 2 (consistent with PNAS).
+  ✓ [PASS] leading-zero: Leading-zero style consistent with journal.
+--------------------------------------------------------
+  0 FAIL  0 WARN  8 PASS

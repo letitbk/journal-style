@@ -1,0 +1,11 @@
+id: TESTJ
+name: Test Journal
+aliases: [test journal]
+extends: [families/sociology]
+sources:
+  made-up: {title: "Fixture for tests", accessed: 2026-10-24}
+evidence:
+  tables: {status: observed, sources: [made-up]}
+notes: |
+  Tables
+  - Test only.

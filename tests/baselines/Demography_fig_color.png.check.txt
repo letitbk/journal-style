@@ -1,0 +1,17 @@
+
+Checking fig_color.png  against  Demography figure spec
+--------------------------------------------------------
+  ▲ [WARN] format: Raster (.png). Journals prefer VECTOR (PDF/EPS/SVG) for charts/line art; raster is fine for photos/maps.
+  ▲ [WARN] resolution: No DPI metadata — cannot verify resolution or physical size. Re-export with dpi set.
+  ▲ [WARN] width: Could not determine physical width — verify it fits a column spec by hand.
+  ✓ [PASS] color: Color figure. Demography policy: color_ok. Ensure series stay distinct in grayscale (dash/marker/shade, not hue alone).
+    · 1026px wide, no DPI metadata (physical size unknown) | chromatic pixels 2.1% | red AND green present — check red-green colorblind safety
+--------------------------------------------------------
+  VISION checklist (judge by eye vs references/figure-house-style-notes.md, Demography):
+    [ ] Caption BELOW the figure, format 'Figure {n}.'
+    [ ] Series distinguishable in grayscale (dash + marker + shade, not hue alone)
+    [ ] Plain-language axis titles; minimal/no gridlines
+    [ ] Uncertainty as CI band/whisker (NOT dynamite bars); no 3D/pie/dual-axis
+    [ ] Multi-panel labels present + consistent; text legible at print size
+--------------------------------------------------------
+  0 FAIL  3 WARN  1 PASS

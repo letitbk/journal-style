@@ -1,0 +1,81 @@
+id: SocialForces
+name: Social Forces
+aliases: [SocialForces, "Social Forces", SF, "Soc Forces"]
+publisher: Oxford University Press
+extends: [families/sociology]
+ready: draft
+
+tables:
+  rules:
+    header_shading: 0.92         # modern OUP: light grey header row
+  caption:
+    position: above
+    label: "Table {n}."
+    label_case: titlecase
+    title_case: title
+    bold: true                   # modern OUP: bold label and bold title
+    italic: false
+    align: left
+  stars:
+    legend: "*p < 0.05  **p < 0.01  ***p < 0.001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+    p_symbol: "p"
+    leading_zero: true           # modern OUP keeps leading zeros
+    marginal: null
+    tailedness: two-tailed
+    star_on: estimate
+  decimals:
+    coef: 2
+    se: 2
+    descriptive: 2
+    percent: 1
+    leading_zero: true
+    align: decimal
+  note:
+    label: "Note:"
+    plural_label: "Notes:"
+    source_label: "Source:"
+    smaller_font: true
+    # fixed effects, clustering, and weights go in the note, not in indicator rows
+    order: [estimator, controls, se_type, weights, source, nobs, star_legend]
+    star_legend_last: false      # the star legend line often comes first, then "Note:"
+  variable_labels:
+    human_readable: true
+    show_reference_categories: true
+    reference_format: "(Ref: {level})"
+  gof_rows: [nobs, r2, adj_r2]
+  submission_format: docx
+
+figures:
+  caption:
+    position: above              # unusual: the figure title goes above the plot
+    format: "Figure {n}."
+    label_bold: true
+    title_case: sentence
+    source_note_below: true      # bold "Note:" and "Source:" below the figure
+  color: {policy: color_ok, redundant_encoding: true, color_ok_for: [any]}
+  fonts: {in_figure: sans_serif, min_pt_at_print: 7}
+  panel_labels: {style: "bold A/B or 'Panel A:'", position: top_left_of_panel}
+  width: {single_col_in: 3.35, full_width_in: 6.85, rotate_wide_landscape: true}
+
+notes: |
+  Social Forces has two visual eras. Legacy (before about 2015): `Table 1:` with a colon, no leading zeros, `Notes:` plural. Modern OUP (about 2015 on): bold `Table 1.` and bold title, leading zeros kept (0.05), `Note:` singular, light grey header shading. Default to modern.
+
+  Tables
+  - Rules: booktabs, no vertical rules. The modern era adds light grey shading on the header.
+  - Caption: above, left aligned. Modern: bold `Table 1.` and a bold title. Legacy: `Table 1:` with a colon.
+  - Estimates: coefficient and stars, with the uncertainty stacked below in parentheses. What sits in the parentheses varies (SE, t ratios, or SD), so the note must say which. Models side by side.
+  - Stars: `* / ** / ***` at .05, .01, .001. Modern keeps leading zeros (0.05); legacy drops them. Legacy states two-tailed tests.
+  - Decimals: 2 is most common.
+  - Note: modern `Note:`, legacy `Notes:`. Descriptive tables add a separate `Source:`. Fixed effects, clustering, and weights are stated in the note, not as indicator rows. The star legend line often comes first, then `Note:`.
+  - Fit rows: observations or N, R², adjusted R².
+  - Labels: readable names, with reference categories inline as `(Ref: level)`.
+  - Look: serif, airy. Wide tables in landscape.
+
+  Figures
+  - The caption or title goes above the figure, which is unusual. `Note:` and `Source:` go below. Legacy: `FIGURE 1:` in caps serif with a colon. Modern: bold sans `Figure 1.` in sentence case.
+  - Legacy figures are black and white with open markers and dashes. Modern figures use color (ggplot grey panel) but keep shape and dash redundancy.
+  - Chart types: line and trend charts, grouped bars with error bars, conceptual diagrams, maps, box plots.
+  - Sans serif axis labels in both eras. Panel labels: bold `A`/`B` (most common), `Panel A:`, legacy `(a)`.
+  - CI or error bars are standard and defined in the notes. Landscape when wide.

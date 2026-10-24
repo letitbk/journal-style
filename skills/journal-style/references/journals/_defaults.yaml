@@ -1,0 +1,93 @@
+# _defaults.yaml — generator preferences for every journal.
+# Families and journal files override these. See README.md for the merge rules.
+# These are preferences, not journal requirements: a journal's `requirements`
+# block wins when the two disagree.
+
+sources:
+  common-practice:
+    title: "Common practice in social science journals; a starting point, not a journal rule"
+    accessed: 2026-06-20
+    kind: practice
+
+evidence:
+  tables: {status: provisional, sources: [common-practice]}
+  figures: {status: provisional, sources: [common-practice]}
+
+tables:
+  rules:
+    style: booktabs           # horizontal rules only
+    vertical_rules: false
+    double_top_rule: false
+    spanner_rules: true       # short rule under grouped column headers
+  caption:
+    position: above
+    label: "Table {n}."
+    label_case: titlecase
+    bold: false
+    italic: false
+  estimate_layout:
+    uncertainty: se
+    placement: stacked_below  # SE on its own line beneath the estimate
+    wrapper: parentheses
+    ci_format: null
+    side_by_side_models: true
+  stars:
+    legend: "* p < 0.05  ** p < 0.01  *** p < 0.001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+    p_symbol: "p"
+    leading_zero: true
+    marginal: null
+    tailedness: two-tailed
+    star_on: estimate
+  decimals:
+    coef: 3
+    se: 3
+    descriptive: 2
+    percent: 1
+    leading_zero: true
+    align: decimal
+  note:
+    label: "Note:"
+    plural_label: "Notes:"
+    source_label: "Source:"
+    smaller_font: true
+    order: [source, nobs, units, estimator, se_type, star_legend]
+    star_legend_last: true
+  gof_rows: [nobs, r2, adj_r2, log_lik]
+  variable_labels:
+    human_readable: true      # "Years of education", never "yrs_educ"
+    show_reference_categories: true
+    reference_format: "(ref.)"
+  typography:
+    font: serif
+    density: medium
+  wide_tables:
+    rotate_landscape: true
+
+figures:
+  caption:
+    position: below           # figure captions go below; table captions go above
+    format: "Figure {n}."
+  color:
+    policy: color_ok
+    redundant_encoding: true  # series stay distinct in grayscale: dash, marker, shade
+    color_ok_for: [any]
+  chart_types_common: [line_trend, coefficient_forest, bar, scatter, conceptual_path_diagram, map]
+  anti_patterns: [pie, 3d, dual_axis, dynamite_bar_with_error_caps, chartjunk, decorative_color]
+  uncertainty: ci_band_or_whisker
+  fonts:
+    in_figure: sans_serif
+    min_pt_at_print: 7
+  panel_labels:
+    style: "(a)/(b) or A/B"
+    position: above_panel
+  axes:
+    plain_language_titles: true
+    gridlines: none_or_light
+    legend: inside_or_below
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 600
+  vector_preferred: true
+  file_formats: [pdf, eps, svg, tiff, png]

@@ -1,0 +1,7 @@
+# Local patch: drop the † p < .10 marker and use "Notes:" for ASR.
+id: ASR
+tables:
+  stars:
+    marginal: null
+  note:
+    label: "Notes:"

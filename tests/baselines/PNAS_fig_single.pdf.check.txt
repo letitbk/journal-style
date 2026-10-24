@@ -1,0 +1,14 @@
+
+Checking fig_single.pdf  against  PNAS figure spec
+--------------------------------------------------------
+  ✓ [PASS] format: Vector (.pdf) — good for line art/charts.
+  ✓ [PASS] width: Width 3.42in matches single~3.43in.
+--------------------------------------------------------
+  VISION checklist (judge by eye vs references/figure-house-style-notes.md, PNAS):
+    [ ] Caption BELOW the figure, format 'Fig. {n}.'
+    [ ] Series distinguishable in grayscale (dash + marker + shade, not hue alone)
+    [ ] Plain-language axis titles; minimal/no gridlines
+    [ ] Uncertainty as CI band/whisker (NOT dynamite bars); no 3D/pie/dual-axis
+    [ ] Multi-panel labels present + consistent; text legible at print size
+--------------------------------------------------------
+  0 FAIL  0 WARN  2 PASS

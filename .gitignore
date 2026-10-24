@@ -3,5 +3,5 @@ __pycache__/
 *.pyc
 logs/
 .claude/
-skills/journal-figures/references/exemplars/
-skills/journal-tables/references/exemplars/
+# Page images from published articles never belong here. Keep them in ~/.config/journal-style/exemplars/.
+skills/journal-style/references/exemplars/

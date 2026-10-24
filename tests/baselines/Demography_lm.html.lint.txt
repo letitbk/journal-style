@@ -1,0 +1,13 @@
+
+Linting Demography_lm.html  against  Demography
+--------------------------------------------------------
+  ✓ [PASS] caption: Caption / table number present.
+  ✓ [PASS] uncertainty: SE in square brackets present.
+  ✓ [PASS] stars: Significance stars present.
+  ✓ [PASS] stars-leading-zero: Star legend leading-zero style matches journal.
+  ▲ [WARN] sample-size: No N / Num.Obs / Observations row found.
+  ✓ [PASS] note: Table note present.
+  ▲ [WARN] decimals: Modal decimals = 1; Demography typically uses ~3 for coefficients.
+  ✓ [PASS] leading-zero: Leading-zero style consistent with journal.
+--------------------------------------------------------
+  0 FAIL  2 WARN  6 PASS

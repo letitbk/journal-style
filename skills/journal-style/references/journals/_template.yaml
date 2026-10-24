@@ -1,0 +1,65 @@
+# _template.yaml — copy this file to <ID>.yaml to add a journal.
+# Follow references/adding-a-journal.md. Fill in only what a source supports.
+# Delete any block you leave empty; the journal then inherits it from its family
+# or from _defaults.yaml. Run scripts/validate_profiles.py when you are done.
+
+id: NEWID                         # must equal the file name, e.g., AER for AER.yaml
+name: Full Journal Name
+aliases: [NEWID, "Full Journal Name"]
+publisher: Publisher name
+extends: []                       # e.g., [families/aea]; see the families/ folder
+ready: draft                      # change to checked only after a person compares it with recent articles
+
+sources:
+  guidelines:
+    url: https://example.org/author-guidelines
+    accessed: 2026-01-01           # the date you read the page
+    kind: guideline
+  # articles:
+  #   title: "Tables read from 3 articles in 2025 issues"
+  #   accessed: 2026-01-01
+  #   kind: observed
+  #   count: 3
+
+evidence:                         # which source supports which settings
+  tables: {status: provisional, sources: []}
+  figures: {status: guideline, sources: [guidelines]}
+  # figures.width: {status: guideline, sources: [guidelines]}
+
+requirements:                     # rules the journal states; these win over preferences
+  tables: []
+  #  - {rule: "Tables must be editable, not images", stage: submission, source: guidelines}
+  figures: []
+
+tables:                           # only the keys that differ from the family or _defaults
+  caption:
+    label: "Table {n}."
+  stars:
+    legend: "* p < 0.05  ** p < 0.01  *** p < 0.001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+  estimate_layout:
+    uncertainty: se               # se | ci | t | none
+    placement: stacked_below      # stacked_below | separate_column | same_row
+    wrapper: parentheses          # parentheses | brackets
+  decimals:
+    coef: 3
+    leading_zero: true
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  width:
+    single_col_mm: 85
+    full_width_mm: 175
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 600
+
+notes: |
+  Tables
+  - What the guidelines say, and what recent articles show.
+
+  Figures
+  - What the guidelines say.

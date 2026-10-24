@@ -1,0 +1,81 @@
+id: Demography
+name: Demography
+aliases: [Demography]
+publisher: Duke University Press (2021 on)
+extends: [families/sociology]
+ready: draft
+
+evidence:
+  # Its award papers have few figures (2 figure pages), so the figure rules come from
+  # the shared defaults and the Duke UP guidelines, not from reading articles.
+  figures: {status: provisional, sources: []}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}"
+    label_case: titlecase
+    title_case: sentence
+    bold: true                   # label bold; title bold (legacy) or roman (Duke)
+    italic: false
+  estimate_layout:
+    uncertainty: se
+    placement: separate_column   # SE in its own column beside the coefficient
+    wrapper: brackets            # [ ]
+    sig_column: true             # a separate "Sig." column is common
+    ci_format: null
+    side_by_side_models: true
+  stars:
+    legend: "*p < .05  **p < .01  ***p < .001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+    p_symbol: "p"
+    leading_zero: false
+    marginal: null
+    alt_ladder: "*p < .10  **p < .05  ***p < .01"   # a minority of tables shift the ladder
+    tailedness: unstated
+    star_on: estimate
+  decimals:
+    coef: 3
+    se: 3
+    descriptive: 2
+    percent: 1
+    leading_zero: false
+    align: decimal
+  note:
+    label: "Note:"
+    plural_label: "Notes:"
+    source_label: "Source:"
+    smaller_font: true
+    order: [source, nobs, estimator, se_type, star_legend]
+    star_legend_last: true
+  variable_labels:
+    human_readable: true
+    show_reference_categories: true
+    reference_format: "(ref. = {level})"
+  gof_rows: [nobs]
+  submission_format: docx
+
+figures:
+  caption: {position: below, format: "Figure {n}.", label_bold: true, title_case: sentence}
+  color: {policy: color_ok, redundant_encoding: true, color_ok_for: [any]}
+  fonts: {in_figure: sans_serif, min_pt_at_print: 7}
+  panel_labels: {style: "(a)/(b) or A/B", position: above_panel}
+  width: {single_col_in: 3.35, full_width_in: 6.85, rotate_wide_landscape: true}
+
+notes: |
+  Demography has two eras. Legacy (before 2021): bold `Table N.` and a bold title. Duke UP (2021 on): bold `Table N` label and a roman title. The booktabs layout is the same in both.
+
+  Tables
+  - Rules: booktabs, no vertical rules, spanner rules, no double rules.
+  - Caption: above. `Table N` with a bold label in mixed case. The title is bold (legacy) or roman (Duke UP). The period after the number varies by era.
+  - Estimates (typical of Demography): the SE sits in a separate column, often in square brackets, often with a separate `Sig.` column. This differs from the stacked parentheses of the other sociology journals. Models or samples are grouped under bold spanners.
+  - Stars: most tables use `* .05 / ** .01 / *** .001`; a minority use `* .10 / ** .05 / *** .01`. No leading zero. Three decimal coefficients.
+  - Decimals: 3 for regressions and 1 or 2 for descriptives, aligned on the decimal point.
+  - Note: `Note:`, `Notes:`, or `Source:`, smaller font. It carries N, the star legend, reminders about reference categories, and weighting.
+  - Fit rows: mainly N. R², log likelihood, and AIC are mostly absent.
+  - Labels: readable names, with reference categories inline as `(ref. = level)`.
+  - Look: serif, airy, few rules, aligned on the decimal point. Regression tables are full width or landscape.
+
+  Figures
+  - Not checked against articles. The award papers have few figures. Use the shared defaults and the Duke UP guidelines, and compare with a recent Demography figure.

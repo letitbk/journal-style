@@ -1,0 +1,74 @@
+id: AJS
+name: American Journal of Sociology
+aliases: [AJS, "American Journal of Sociology", "Am J Sociol"]
+publisher: University of Chicago Press
+extends: [families/sociology]
+ready: draft
+
+tables:
+  rules:
+    style: booktabs
+    vertical_rules: false
+    double_top_rule: true        # a doubled rule at the very top
+    spanner_rules: true
+  caption:
+    position: above
+    label: "TABLE {n}"           # all caps, no period after the number
+    label_case: uppercase
+    title_case: smallcaps        # title in small caps, centered, on its own line
+    title_on_separate_line: true
+    bold: false
+    italic: false
+  stars:
+    legend: "* P < .05  ** P < .01  *** P < .001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+    p_symbol: "P"                # capital italic P
+    p_italic: true
+    leading_zero: false
+    marginal: {symbol: "†", threshold: 0.10}
+    tailedness: two-tailed
+    star_on: estimate
+  note:
+    label: "Note.—"              # small caps run-in with an em dash, no colon
+    plural_label: "Note.—"
+    source_label: "Source.—"
+    smallcaps_leadin: true
+    smaller_font: true
+    order: [source, nobs, units, estimator, se_type, star_legend]
+    star_legend_last: true
+  extras:
+    dot_leaders: true            # row labels joined to the first column with dot leaders
+  submission_format: docx
+
+figures:
+  caption:
+    position: below
+    format: "Fig. {n}.—"         # small caps "Fig." and an em dash run-in, sentence case
+    smallcaps_leadin: true
+    label_bold: false
+    title_case: sentence
+    source_note_inline: true     # sources and CI definitions run on in the caption
+  color: {policy: grayscale_preferred, redundant_encoding: true, color_ok_for: [maps, "many series"]}
+  fonts: {in_figure: serif_or_sans, min_pt_at_print: 7}
+  panel_labels: {style: "A/B or a)/b)", position: above_panel}
+  width: {single_col_in: 3.3, full_width_in: 6.5, rotate_wide_landscape: true}
+
+notes: |
+  Tables
+  - Rules: booktabs with a double top rule (typical of AJS). Single rules under the header and at the bottom. Spanner rules. No vertical rules.
+  - Caption: above and centered. `TABLE N` in all caps with no period, then the title on its own line in small caps, not bold or italic. `TABLE N (Continued)` on later pages.
+  - Estimates: SD or SE stacked below in parentheses. Models side by side. No brackets or CIs.
+  - Stars: `* P < .05  ** P < .01  *** P < .001` with a capital italic P and no leading zero. `† P < .10` is optional.
+  - Decimals: 3 for models and 2 for descriptives, no leading zero. Row labels use dot leaders.
+  - Note: `Note.—` as a small caps run-in with an em dash and no colon. `Source.—` the same way. Smaller serif font. The star legend follows the note paragraph.
+  - Fit rows: N, df, G², BIC, R². No AIC. Log likelihood or BIC for categorical models.
+  - Labels: readable names, with indented subcategories under group headings.
+  - Look: serif (Caslon or Garamond class), airy. Wide tables are rotated to full landscape.
+
+  Figures
+  - Caption below in the AJS form `Fig. 1.—` (small caps "Fig." and an em dash run-in, sentence case). Sources and CI definitions run on in the caption. This matches the table `Note.—`.
+  - Older figures are grayscale; recent ones use muted ggplot color. Even color figures keep dash and marker redundancy.
+  - Chart types: line and trend charts, conceptual, path, and network diagrams (typical of AJS), bars, maps, small multiples.
+  - Fonts: serif in older figures, sans serif in software charts. Panel labels A/B or a)/b).
+  - Landscape figures are common. Single column and full width.

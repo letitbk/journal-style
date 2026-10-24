@@ -1,7 +1,7 @@
 {
   "name": "journal-style",
-  "version": "1.0.0",
-  "description": "Format and check figures and regression tables for sociology and demography journals (ASR, AJS, Social Forces, Demography, PNAS).",
+  "version": "2.0.0",
+  "description": "Format and check regression tables and figures for academic journals in sociology, demography, general science, economics, political science, public health, statistics, communication, and computer science, with one profile per journal and a workflow for adding more.",
   "author": {
     "name": "Byungkyu Lee"
   },

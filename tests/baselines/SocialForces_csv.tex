@@ -1,0 +1,29 @@
+% requires \usepackage[table]{xcolor} in your preamble
+\begin{table}[!t]
+\centering
+\caption{Table 1.}
+\begin{threeparttable}
+\begin{tabular}{lll}
+\toprule
+\rowcolor[gray]{0.92}
+& Model 1 & Model 2 \\ \midrule
+(Intercept) & 1.20*** & 0.95*** \\
+& (0.21) & (0.23) \\
+Years of education & 0.08*** & 0.06*** \\
+& (0.01) & (0.01) \\
+Female & -0.41*** & -0.40*** \\
+& (0.10) & (0.10) \\
+Some college (ref. = high school) &  & 0.14* \\
+&  & (0.07) \\
+College degree &  & 0.30*** \\
+&  & (0.09) \\
+Num.Obs. & 2400 & 2381 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item Note: Standard errors in parentheses.
+\item *p < 0.05  **p < 0.01  ***p < 0.001 (two-tailed tests).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+

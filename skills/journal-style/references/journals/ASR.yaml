@@ -1,0 +1,60 @@
+id: ASR
+name: American Sociological Review
+aliases: [ASR, "American Sociological Review", "Am Sociol Rev"]
+publisher: SAGE
+extends: [families/sociology]
+ready: draft
+
+evidence:
+  figures.raster: {status: provisional, sources: []}
+
+tables:
+  stars:
+    legend: "* p < .05  ** p < .01  *** p < .001"
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "**", "***"]
+    p_symbol: "p"
+    leading_zero: false
+    marginal: {symbol: "†", threshold: 0.10}   # about a quarter to a third of tables add † p < .10
+    tailedness: two-tailed
+    star_on: estimate
+  note:
+    label: "Note:"
+    plural_label: "Notes:"
+    source_label: "Source:"
+    smaller_font: true
+    order: [source, nobs, units, estimator, se_type, star_legend]
+    star_legend_last: true
+  submission_format: docx
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+    label_bold: true
+    title_case: title
+    source_note_below: true
+  color: {policy: grayscale_preferred, redundant_encoding: true, color_ok_for: [maps, "<=2 series"]}
+  fonts: {in_figure: sans_serif, min_pt_at_print: 7}
+  panel_labels: {style: "(a)/(b) or (A)/(B)", position: above_panel}
+  width: {single_col_in: 3.42, full_width_in: 7.0, rotate_wide_landscape: true}
+  raster: {dpi_min_halftone: 300, dpi_min_line_art: 1200}
+
+notes: |
+  Tables
+  - Rules: booktabs (top, under the header, bottom). No vertical rules. Spanner rules under grouped headers. Panels are separated by a blank row and a bold subheader, not a rule.
+  - Caption: above, `Table 1. Title In Title Case`, with a period after the number. Not all caps, no em dash, roman weight. `(continued)` on later pages.
+  - Estimates: coefficient with the SE stacked below in parentheses in about 60% of regression tables; about 40% put them on one line. Models side by side as `Model 1` to `Model 4`. No CIs or brackets seen.
+  - Stars: `* p < .05  ** p < .01  *** p < .001`, no leading zero. `† p < .10` in about a quarter to a third of tables. Two-tailed tests often stated. Stars go on the coefficient.
+  - Decimals: 3 for regressions and 2 for descriptives, no leading zero, aligned on the decimal point. Counts use a thousands comma.
+  - Note: `Note:` (singular is most common), smaller font. Order: source, N, units, SE type, and the star legend last. Superscript a, b, c footnotes key to note lines.
+  - Fit rows: N or observations, R² and adjusted R² for OLS, log likelihood and level Ns for multilevel models. AIC and BIC are rare. The intercept or constant is shown.
+  - Labels: readable names. Reference categories are shown, as `(reference)` or in a footnote.
+  - Look: serif, dense. Wide tables are rotated to landscape.
+
+  Figures
+  - Caption below: bold `Figure 1.` and a title in title case (title not bold). `Source:`, `Note:`, and significance footnotes go below, in a smaller font. Never all caps, never an em dash.
+  - Grayscale is most common. Color only for maps or two series. Strong redundant encoding.
+  - Chart types: line and trend charts (most common), conceptual or path diagrams with boxes and arrows (typical of ASR), coefficient plots, scatterplots, bar charts, maps.
+  - Sans serif text inside the figure. Panel labels `(a)/(b)` or `(A)/(B)` above the panels.
+  - Plain look (Stata, base R, diagrams), not glossy ggplot. Single column and full width.

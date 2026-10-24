@@ -1,0 +1,31 @@
+# families/sociology.yaml — conventions shared by ASR, AJS, Social Forces, and Demography.
+name: Sociology journals (ASA-style tables)
+
+sources:
+  asa-awards:
+    title: "Table and figure pages read from ASA section award papers in ASR, AJS, Social Forces, and Demography"
+    accessed: 2026-06-20
+    kind: corpus
+
+evidence:
+  tables: {status: observed, sources: [asa-awards]}
+  figures: {status: observed, sources: [asa-awards]}
+  figures.width: {status: provisional, sources: []}
+
+tables:
+  caption:
+    title_case: title
+  stars:
+    legend: "* p < .05  ** p < .01  *** p < .001"
+    leading_zero: false
+  decimals:
+    leading_zero: false
+
+figures:
+  color:
+    policy: grayscale_preferred   # sociology print journals lean black and white
+    color_ok_for: [maps, "<=2 series", photographs]
+  width:
+    single_col_in: 3.3
+    full_width_in: 6.9
+    rotate_wide_landscape: true

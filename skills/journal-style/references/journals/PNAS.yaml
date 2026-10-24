@@ -1,0 +1,87 @@
+id: PNAS
+name: Proceedings of the National Academy of Sciences
+aliases: [PNAS, "Proc Natl Acad Sci", "Proceedings of the National Academy of Sciences"]
+publisher: National Academy of Sciences
+extends: []
+ready: draft
+
+evidence:
+  # Encoded from the PNAS author guidelines, but the URL and date were not recorded.
+  # Only 4 PNAS papers were in the award corpus, too few to read conventions from.
+  tables: {status: provisional, sources: []}
+  figures: {status: provisional, sources: []}
+
+tables:
+  rules:
+    style: booktabs
+    vertical_rules: false
+    double_top_rule: false
+    spanner_rules: true
+  caption:
+    position: above
+    label: "Table {n}."
+    label_case: titlecase
+    title_case: sentence
+    bold: false
+    italic: false
+  estimate_layout:
+    uncertainty: ci              # PNAS leans to CIs or SEs
+    placement: same_row
+    wrapper: parentheses
+    ci_format: brackets
+    side_by_side_models: true
+  stars:
+    legend: "*P < 0.05, †P < 0.01, ‡P < 0.001"   # PNAS uses symbol footnotes
+    thresholds: [0.05, 0.01, 0.001]
+    symbols: ["*", "†", "‡"]
+    p_symbol: "P"
+    p_italic: true
+    leading_zero: true
+    marginal: null
+    tailedness: unstated
+    star_on: estimate
+    note: "PNAS often reports exact P values rather than stars; prefer exact P when feasible."
+  decimals:
+    coef: 2
+    se: 2
+    descriptive: 2
+    percent: 1
+    leading_zero: true
+    align: decimal
+  note:
+    label: "Note:"               # PNAS uses symbol-keyed footnotes (*, †, ‡, §)
+    smaller_font: true
+    order: [nobs, units, estimator, se_type, star_legend]
+    star_legend_last: true
+  column_widths_cm: [8.7, 11.4, 17.8]
+  variable_labels:
+    human_readable: true
+    show_reference_categories: true
+    reference_format: "(ref.)"
+  gof_rows: [nobs, r2]
+  typography:
+    font: serif
+    density: compact
+  submission_format: latex
+
+figures:
+  caption: {position: below, format: "Fig. {n}.", title_case: sentence}
+  color: {policy: color_ok, redundant_encoding: true, color_ok_for: [any]}
+  fonts: {in_figure: sans_serif, family: "Helvetica/Arial", min_pt_at_print: 6, max_pt: 12, prefer_pt: 8}
+  panel_labels: {style: "A/B/C", position: top_left_of_panel}
+  width:
+    single_col_cm: 8.7
+    one_and_half_col_cm: 11.4
+    full_width_cm: 17.8
+    max_height_cm: 22.5
+  raster: {dpi_min_halftone: 300, dpi_min_line_art: 600}
+  line_width_min_pt: 0.5
+
+notes: |
+  These rules come from the PNAS author guidelines, not from reading articles. Compare with a recent PNAS table before you submit.
+
+  Tables
+  - Booktabs, no vertical rules. Footnotes are keyed with symbols (`*, †, ‡, §`). PNAS often reports exact P values instead of stars. Leading zeros are kept (0.05). Compact. Column widths 8.7, 11.4, and 17.8 cm. Prefer exact P values and CIs where you can.
+
+  Figures
+  - Columns 8.7, 11.4, and 17.8 cm wide, at most 22.5 cm tall. Helvetica or Arial at 6 to 12 pt (8 pt is best). Lines at least 0.5 pt. 300 dpi for halftones and 600 dpi for line art. `Fig. N.` caption below.

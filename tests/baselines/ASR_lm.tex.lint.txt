@@ -1,0 +1,15 @@
+
+Linting ASR_lm.tex  against  ASR
+--------------------------------------------------------
+  ✓ [PASS] no-vertical-rules: No vertical rules.
+  ✓ [PASS] booktabs: Uses booktabs rules.
+  ✓ [PASS] caption: Caption / table number present.
+  ✓ [PASS] uncertainty: SE/CI in parentheses present.
+  ✓ [PASS] stars: Significance stars present.
+  ✓ [PASS] stars-leading-zero: Star legend leading-zero style matches journal.
+  ✓ [PASS] sample-size: N / observations reported.
+  ✓ [PASS] note: Table note present.
+  ✓ [PASS] decimals: Modal decimals = 3 (consistent with ASR).
+  ✓ [PASS] leading-zero: Leading-zero style consistent with journal.
+--------------------------------------------------------
+  0 FAIL  0 WARN  10 PASS
