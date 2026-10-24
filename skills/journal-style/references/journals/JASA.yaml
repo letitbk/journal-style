@@ -1,0 +1,73 @@
+id: JASA
+name: Journal of the American Statistical Association
+aliases: [JASA, "Journal of the American Statistical Association", "J Am Stat Assoc"]
+publisher: Taylor & Francis, for the American Statistical Association
+extends: []
+ready: draft
+
+sources:
+  jasa-instructions:
+    url: https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=uasa20
+    accessed: 2026-10-24
+    kind: guideline
+  asa-style:
+    url: https://files.taylorandfrancis.com/asa-style-guide.pdf
+    title: "ASA Style Guide (April 2025)"
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.caption: {status: guideline, sources: [asa-style]}
+  tables.note: {status: guideline, sources: [asa-style]}
+  tables.rules: {status: guideline, sources: [asa-style]}
+  figures: {status: guideline, sources: [jasa-instructions, asa-style]}
+
+requirements:
+  tables:
+    - {rule: "At most 35 pages including figures and tables", stage: submission, source: jasa-instructions}
+    - {rule: "Entry footnotes use superscript lowercase letters; values in parentheses are aligned separately", stage: publication, source: asa-style}
+  figures:
+    - {rule: "The same figure must work in color and in black and white, and the text and captions must not refer to colors", stage: publication, source: jasa-instructions}
+    - {rule: "Figures sit in the body of the manuscript at submission and come as separate files after acceptance", stage: publication, source: asa-style}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}."
+  rules:
+    style: booktabs
+    vertical_rules: false         # "No horizontal or vertical rules are used in the body of the table."
+  note:
+    label: "Notes:"               # flush left, followed by a colon
+    source_label: "Source:"
+  decimals:
+    align: decimal
+
+figures:
+  caption:
+    position: below               # "Figure captions should appear under each figure."
+    format: "Figure {n}."
+  color:
+    policy: grayscale_required    # one figure must serve for color and black and white
+    redundant_encoding: true
+  fonts:
+    in_figure: sans_serif
+    min_pt_at_print: 8
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 300
+  file_formats: [eps, ps, pdf, tif, jpg]
+
+notes: |
+  Tables
+  - Captions like "Table 1. Mean performance scores". No rules inside the body of the table; booktabs rules at the top, below the header, and at the bottom are fine.
+  - Align decimal points within a column; align values in parentheses separately. More than two significant digits are seldom needed.
+  - "Notes:" flush left with a colon; entry footnotes as superscript lowercase letters; "Source:" starts a new paragraph.
+  - JASA states no rule on stars or intervals; those settings are provisional.
+
+  Figures
+  - Captions like "Figure 1. Regression quantiles", under each figure.
+  - The same figure must work in color and in black and white, and the text must not refer to colors.
+  - EPS or PS preferred; PDF, TIF, JPG, and BMP are accepted. Bitmaps at 300 dpi or more. Text no smaller than 8 pt.
+  - The submission page asks for figures in the body of the manuscript but also says figures should be saved separately; after acceptance they come as separate files.

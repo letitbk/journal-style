@@ -51,9 +51,22 @@ def read_text(path):
     return raw
 
 
+# a significance marker attached to a number, e.g. "1.204***" or "0.30‡"; LaTeX
+# commands such as table* or caption* have no digit before the star
+NUM_STAR = re.compile(r"\d\s*(?:\\?\*{1,3}|†|‡|§)")
+INTERVAL = re.compile(r"[\[(]\s*-?\d*\.?\d+\s*(?:,|to|–|-)\s*-?\d*\.?\d+\s*[\])]")
+
+
 def num_decimals(text):
+    """Count digits after the decimal point in the table's numbers.
+
+    Numbers without a leading zero (.083) count. Lengths inside LaTeX commands,
+    e.g., \\vskip1.1pt or \\rowcolor[gray]{0.92}, do not.
+    """
     from collections import Counter
-    c = Counter(len(m) for m in re.findall(r"(?<![\d.])-?\d{1,3}\.(\d{1,4})(?![\d])", text))
+    text = re.sub(r"\\rowcolor\[[^\]]*\]\{[^}]*\}", " ", text)
+    text = re.sub(r"\\[A-Za-z]+\s*-?\d*\.?\d+\s*(pt|em|ex|cm|mm|in|bp)", " ", text)
+    c = Counter(len(m) for m in re.findall(r"(?<![\w.])-?\d{0,3}\.(\d{1,4})(?![\d])", text))
     return c
 
 
@@ -125,11 +138,16 @@ def main():
     else:
         emit("WARN", "caption", "No 'Table N' caption found (journals place it above the table).")
 
-    # uncertainty present (parentheses or brackets)
+    # uncertainty present (parentheses or brackets, or an interval)
     has_paren = re.search(r"\(\s*-?\d*\.\d+\s*\)", text)
     has_brack = re.search(r"\[\s*-?\d*\.\d+\s*\]", text)
     want_brack = P and P.get("estimate_layout", {}).get("wrapper") == "brackets"
-    if want_brack:
+    if P.get("estimate_layout", {}).get("uncertainty") == "ci":
+        has_ci = INTERVAL.search(text)
+        emit("PASS" if has_ci else "WARN", "uncertainty",
+             "Confidence intervals present." if has_ci else
+             f"{journal} reports confidence intervals; none detected.")
+    elif want_brack:
         emit("PASS" if has_brack else "WARN", "uncertainty",
              "SE in square brackets present." if has_brack else
              f"{journal} expects SE in [brackets]; none detected.")
@@ -139,7 +157,13 @@ def main():
              "No (SE) in parentheses detected — is uncertainty reported?")
 
     # significance stars + legend
-    if re.search(r"\*{1,3}", text):
+    if (P.get("stars") or {}).get("use") is False:
+        if NUM_STAR.search(text):
+            emit("FAIL", "no-stars", f"{journal} asks for no significance stars, but the table has them. "
+                 "Report standard errors or intervals and drop the stars and the star legend.")
+        else:
+            emit("PASS", "no-stars", f"No significance stars, as {journal} asks.")
+    elif NUM_STAR.search(text):
         emit("PASS", "stars", "Significance stars present.")
         legend = re.findall(r"\*{1,3}\s*[Pp]\s*[<≤=]\s*0?\.\d+", text)
         if P and legend:
@@ -198,6 +222,8 @@ def main():
     print(profile_line(R))
     for w in R["warnings"]:
         print(f"  Note: {w}")
+    for r in R["requirements"]:
+        print(f"  Requirement ({r['stage']}, check by hand): {r['rule']}")
     sys.exit(1 if REPORT["FAIL"] else 0)
 
 

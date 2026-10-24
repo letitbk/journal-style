@@ -1,0 +1,60 @@
+id: CHI
+name: ACM CHI Conference on Human Factors in Computing Systems
+aliases: [CHI, "ACM CHI", "CHI Conference"]
+publisher: ACM
+extends: [families/acm]
+ready: draft
+
+venue_template:
+  name: acmart
+  version: "2.18 or newer"
+  stage:
+    review: "\\documentclass[manuscript,review,anonymous]{acmart}"
+    publication: "\\documentclass[sigconf]{acmart}"
+  url: https://chi2027.acm.org/chi-publication-formats/
+
+sources:
+  chi-formats:
+    url: https://chi2027.acm.org/chi-publication-formats/
+    accessed: 2026-10-24
+    kind: guideline
+  chi-papers:
+    url: https://chi2027.acm.org/authors/papers/
+    accessed: 2026-10-24
+    kind: guideline
+  chi-ready:
+    url: https://chi2027.acm.org/publication-ready-author-instructions/
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables.caption: {status: guideline, sources: [chi-ready]}
+  figures.caption: {status: guideline, sources: [chi-ready]}
+  figures.raster: {status: guideline, sources: [chi-ready]}
+
+requirements:
+  tables:
+    - {rule: "Review: single column with \\documentclass[manuscript,review,anonymous]{acmart}; 5000 to 8000 words are encouraged", stage: submission, source: chi-papers}
+    - {rule: "Final: \\documentclass[sigconf]{acmart}, acmart 2.18 or newer; TAPS makes the two-column PDF", stage: publication, source: chi-ready}
+  figures:
+    - {rule: "Accessible descriptions for all figures, including the appendix", stage: publication, source: chi-ready}
+    - {rule: "Do not scale images in LaTeX; use the exact size", stage: submission, source: chi-formats}
+    - {rule: "Prefer vector graphics; bitmaps at 300 dpi or more in a lossless format such as PNG, never JPG", stage: publication, source: chi-ready}
+
+figures:
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 300
+  file_formats: [pdf, png]
+
+notes: |
+  CHI papers use the ACM acmart class (see the acm family). Use `render_table.R --fragment` and paste the table inside the template's table environment.
+
+  Tables
+  - Caption above the table. booktabs, never vertical rules. Every table is a real table, not an image.
+  - CHI states no rules on stars, decimals, or intervals; those settings are provisional.
+
+  Figures
+  - Caption below the figure. A description (alt text) for every figure, including the appendix.
+  - Vector graphics preferred; bitmaps at 300 dpi or more as PNG, never JPG. Do not scale images in LaTeX.
+  - Review copies are single column (text 5.95 in wide); the final sigconf layout has 3.34 in columns and a 7.0 in text block. These widths were measured from acmart, not stated by CHI.

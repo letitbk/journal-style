@@ -18,7 +18,7 @@ sys.path.insert(0, HERE)
 from profiles import ProfileError, journal_index, load_yaml, resolve, search_dirs
 
 TOP_KEYS = {"id", "name", "aliases", "publisher", "extends", "ready", "sources", "evidence",
-            "requirements", "tables", "figures", "notes", "replace"}
+            "requirements", "tables", "figures", "notes", "replace", "venue_template"}
 STATUSES = {"guideline", "observed", "stargazer", "provisional"}
 PLACEMENTS = {"stacked_below", "separate_column", "same_row"}
 WRAPPERS = {"parentheses", "brackets"}
@@ -137,9 +137,6 @@ def check_resolved(jid):
             if (S.get("color") or {}).get("policy") not in COLOR:
                 bad(where, f"color.policy must be one of {sorted(COLOR)}")
             w = S.get("width") or {}
-            if not any(k in w for k in ("single_col_in", "single_col_cm", "single_col_mm",
-                                        "full_width_in", "full_width_cm", "full_width_mm")):
-                bad(where, "width needs at least one column width")
             for k, v in w.items():
                 if k.endswith(("_in", "_cm", "_mm")):
                     positive(where, v, f"width.{k}")

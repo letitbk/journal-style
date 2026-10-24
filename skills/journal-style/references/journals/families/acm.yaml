@@ -1,0 +1,46 @@
+# families/acm.yaml — ACM venues that use the acmart LaTeX class.
+name: ACM venues (acmart)
+
+sources:
+  acmart-doc:
+    url: https://mirrors.ctan.org/macros/latex/contrib/acmart/acmart.pdf
+    title: "acmart documentation, v2.20"
+    accessed: 2026-10-24
+    kind: guideline
+  sigchi-accessibility:
+    url: https://sigchi.org/resources/guides-for-authors/accessibility/
+    accessed: 2026-10-24
+    kind: guideline
+  acmart-measured:
+    title: "Text and column widths measured by compiling acmart v2.12 (sigconf: 506.295pt and 241.147pt; manuscript: 430.005pt)"
+    accessed: 2026-10-24
+    kind: observed
+    count: 1
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.rules: {status: guideline, sources: [acmart-doc]}
+  figures: {status: provisional, sources: []}
+  figures.width: {status: observed, sources: [acmart-measured]}
+
+requirements:
+  tables:
+    - {rule: "Create every table as a real table, not an image", stage: submission, source: sigchi-accessibility}
+  figures:
+    - {rule: "Give every figure a description with \\Description{...} or the alt= key", stage: publication, source: acmart-doc}
+
+tables:
+  rules:
+    style: booktabs               # "strongly recommended to use the package booktabs"
+    vertical_rules: false         # "Never, ever use vertical rules."
+  caption:
+    position: above
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  width:
+    single_col_in: 3.34           # sigconf \columnwidth 241.147pt
+    full_width_in: 7.0            # sigconf \textwidth 506.295pt
+    manuscript_in: 5.95           # manuscript (review) \textwidth 430.005pt

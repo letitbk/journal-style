@@ -7,7 +7,9 @@ Linting AJS_lm.html  against  AJS
   ✓ [PASS] stars-leading-zero: Star legend leading-zero style matches journal.
   ✓ [PASS] sample-size: N / observations reported.
   ✓ [PASS] note: Table note present.
-  ▲ [WARN] decimals: Modal decimals = 1; AJS typically uses ~3 for coefficients.
+  ✓ [PASS] decimals: Modal decimals = 3 (consistent with AJS).
   ✓ [PASS] leading-zero: Leading-zero style consistent with journal.
 --------------------------------------------------------
-  0 FAIL  1 WARN  7 PASS
+  0 FAIL  0 WARN  8 PASS
+  Profile: AJS tables, evidence observed, checked 2026-06-20, draft
+  Note: AJS is a draft profile. A person has not yet compared it with recent articles.

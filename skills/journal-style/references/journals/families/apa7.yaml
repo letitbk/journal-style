@@ -1,0 +1,63 @@
+# families/apa7.yaml — APA Publication Manual, 7th edition, as the APA Style site states it.
+name: APA style journals (7th edition)
+
+sources:
+  apa-tables:
+    url: https://apastyle.apa.org/style-grammar-guidelines/tables-figures/tables
+    accessed: 2026-10-24
+    kind: guideline
+  apa-sample-tables:
+    url: https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables
+    accessed: 2026-10-24
+    kind: guideline
+  apa-figures:
+    url: https://apastyle.apa.org/style-grammar-guidelines/tables-figures/figures
+    accessed: 2026-10-24
+    kind: guideline
+  apa-numbers:
+    url: https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: guideline, sources: [apa-tables, apa-sample-tables, apa-numbers]}
+  tables.note: {status: provisional, sources: []}
+  figures: {status: provisional, sources: []}
+  figures.fonts: {status: guideline, sources: [apa-figures]}
+  figures.axes: {status: guideline, sources: [apa-figures]}
+
+requirements:
+  tables:
+    - {rule: "Report exact p values to two or three decimals (e.g., p = .015) unless p < .001", stage: publication, source: apa-numbers}
+    - {rule: "General, specific, and probability notes go below the table, in that order", stage: publication, source: apa-tables}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}"            # bold, above the title
+    bold: true
+    title_case: title             # the title is in italic title case on the next line
+    title_italic: true
+    title_on_separate_line: true
+  rules:
+    style: booktabs
+    vertical_rules: false         # "Do not use vertical borders"
+  stars:
+    legend: "*p < .05. **p < .01. ***p < .001."
+    p_symbol: "p"
+    p_italic: true
+    leading_zero: false           # no zero before a statistic that cannot exceed 1
+  estimate_layout:
+    ci_format: brackets           # CIs in square brackets in a single column
+  note:
+    label: "Note."
+
+figures:
+  fonts:
+    in_figure: sans_serif
+    min_pt_at_print: 8
+    max_pt: 14
+  axes:
+    plain_language_titles: true
+    gridlines: none_or_light
+    legend: inside_figure         # "within the borders of the figure"

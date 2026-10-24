@@ -1,0 +1,88 @@
+id: Nature
+name: Nature
+aliases: [Nature]
+publisher: Springer Nature
+extends: [families/nature-portfolio]
+ready: draft
+
+sources:
+  nature-final:
+    url: https://www.nature.com/nature/for-authors/final-submission
+    accessed: 2026-10-24
+    kind: guideline
+  nature-formatting:
+    url: https://www.nature.com/nature/for-authors/formatting-guide
+    accessed: 2026-10-24
+    kind: guideline
+  nature-initial:
+    url: https://www.nature.com/nature/for-authors/initial-submission
+    accessed: 2026-10-24
+    kind: guideline
+  nature-figure-guide:
+    url: https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  figures: {status: guideline, sources: [nature-final, nature-figure-guide]}
+  figures.caption: {status: guideline, sources: [nature-formatting]}
+  tables: {status: provisional, sources: []}
+  tables.caption: {status: guideline, sources: [nature-formatting]}
+
+requirements:
+  tables:
+    - {rule: "Give exact P values for both significant and non-significant results, not only stars", stage: submission, source: nature-initial}
+    - {rule: "Define symbols and abbreviations immediately below the table", stage: publication, source: nature-formatting}
+  figures:
+    - {rule: "Define all error bars and statistics in the figure legend", stage: submission, source: nature-formatting}
+    - {rule: "Initial submission: RGB images at 300 dpi or more; do not send publication-quality figures until an editor asks", stage: submission, source: nature-initial}
+    - {rule: "Avoid red and green for contrast, and avoid rainbow color scales", stage: submission, source: nature-initial}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}"
+    bold: true                    # "a short, one-line title in bold text"
+  stars:
+    legend: "*P < 0.05  **P < 0.01  ***P < 0.001"
+    p_symbol: "P"
+    p_italic: true
+    leading_zero: true
+  decimals:
+    leading_zero: true
+
+figures:
+  caption:
+    position: below
+    format: "Fig. {n}"
+  fonts:
+    in_figure: sans_serif
+    family: "Helvetica/Arial"
+    min_pt_at_print: 5
+    max_pt: 7
+  panel_labels:
+    style: "a, b, c (8 pt, bold, upright, lowercase)"
+    position: top_left_of_panel
+  width:
+    single_col_mm: 89
+    one_and_half_col_mm: 120      # 120 to 136 mm
+    full_width_mm: 183
+    max_height_mm: 247
+  raster:
+    dpi_min_halftone: 300         # photographs; the research figure guide asks for 450 dpi for images
+  line_width_min_pt: 0.25
+  line_width_max_pt: 1
+  file_formats: [ai, eps, pdf, psd, tiff]
+
+notes: |
+  Figures
+  - Final submission: 89 mm (single column), 120 to 136 mm (one and a half), or 183 mm (double column) wide, at most 247 mm deep. The formatting guide and the initial submission page give older sizes (90 mm, 180 mm, at most 170 mm deep); use those only for an initial submission if an editor asks.
+  - Sans serif text, preferably Helvetica or Arial, the same font in every figure. Text 5 to 7 pt at final size. Panel labels a, b, c in 8 pt bold, upright, lowercase.
+  - Lines and strokes 0.25 to 1 pt at final size.
+  - Line art and graphs as AI, EPS, or PDF vector files. Photographs as layered PSD or TIFF at 300 to 600 dpi; the research figure guide asks for at least 450 dpi for images. RGB is recommended.
+  - Avoid red and green for contrast and avoid rainbow color scales. Define every error bar and statistic in the legend. Figures are cited as "Fig. 1".
+
+  Tables
+  - A short one-line title in bold. Symbols and abbreviations are defined immediately below the table.
+  - Give exact P values for significant and non-significant results, with test statistics and confidence intervals where they apply.
+  - Nature's pages do not state rules for table lines, footnote symbols, or decimals. Those settings are provisional; compare with a recent Nature table.

@@ -1,0 +1,75 @@
+id: AJPS
+name: American Journal of Political Science
+aliases: [AJPS, "American Journal of Political Science", "Am J Polit Sci"]
+publisher: Wiley, for the Midwest Political Science Association
+extends: []
+ready: draft
+
+sources:
+  ajps-final-figtab:
+    url: https://ajps.org/wp-content/uploads/2026/04/Guidelines-for-Figures-and-Tables_4_9_2026.pdf
+    title: "AJPS Guidelines for Figures and Tables in Final Drafts (updated 2026-04-09)"
+    accessed: 2026-10-24
+    kind: guideline
+  ajps-accepted:
+    url: https://ajps.org/guidelines-for-accepted-articles/
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: guideline, sources: [ajps-final-figtab]}
+  tables.caption: {status: provisional, sources: []}
+  figures: {status: guideline, sources: [ajps-final-figtab]}
+  figures.caption: {status: provisional, sources: []}
+
+requirements:
+  tables:
+    - {rule: "Each table has an explanatory note; no panels; no italics", stage: publication, source: ajps-final-figtab}
+    - {rule: "All figures, tables, and supporting information at the end of the manuscript, one per page", stage: publication, source: ajps-accepted}
+  figures:
+    - {rule: "No background gridlines; all text in black, not grey; portrait orientation", stage: publication, source: ajps-final-figtab}
+    - {rule: "Legends below or inside the figure, never to the side, and without a box", stage: publication, source: ajps-final-figtab}
+    - {rule: "Panel labels as (a), (b); capitalize only the first word of labels", stage: publication, source: ajps-final-figtab}
+
+tables:
+  stars:
+    legend: "†p < .10; *p < .05; **p < .01"   # "Please use the following p-value legend for all tables"
+    thresholds: [0.10, 0.05, 0.01]
+    symbols: ["†", "*", "**"]
+    leading_zero: false
+    marginal: null
+  estimate_layout:
+    uncertainty: se
+    placement: stacked_below      # "Standard errors should be placed directly beneath coefficients."
+    wrapper: parentheses
+  decimals:
+    coef: 3                       # the nearest hundredth or thousandth, the same throughout
+    se: 3
+    leading_zero: false
+    align: decimal
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  axes:
+    plain_language_titles: true
+    gridlines: none               # "Do not include any gridlines in the background."
+    legend: below_or_inside_no_box
+  panel_labels:
+    style: "(a), (b)"
+    position: above_panel
+
+notes: |
+  These rules come from the AJPS guidelines for final drafts (April 2026). AJPS states no figure or table rules for initial submissions.
+
+  Tables
+  - Use the legend †p < .10; *p < .05; **p < .01 in every table, and no threshold below .01.
+  - Standard errors directly beneath the coefficients. Round to the same place throughout, hundredths or thousandths, and align on the decimal point.
+  - Each table has an explanatory note. No panels and no italics.
+  - Leading zeros are not stated; the legend drops them, so the profile drops them too. The caption form is not stated.
+
+  Figures
+  - No background gridlines. All text in black. Portrait orientation.
+  - Legends below or inside the figure, never to the side, and without a box. Panel labels as (a), (b). Capitalize only the first word of labels.
+  - AJPS gives no widths, resolution, or file formats; the checker skips the width check.

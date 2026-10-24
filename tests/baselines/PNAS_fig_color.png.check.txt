@@ -7,7 +7,7 @@ Checking fig_color.png  against  PNAS figure spec
   ✓ [PASS] color: Color figure. PNAS policy: color_ok. Ensure series stay distinct in grayscale (dash/marker/shade, not hue alone).
     · 1026px wide, no DPI metadata (physical size unknown) | chromatic pixels 2.1% | red AND green present — check red-green colorblind safety
 --------------------------------------------------------
-  VISION checklist (judge by eye vs references/figure-house-style-notes.md, PNAS):
+  VISION checklist (judge by eye vs the `notes` in references/journals/PNAS.yaml):
     [ ] Caption BELOW the figure, format 'Fig. {n}.'
     [ ] Series distinguishable in grayscale (dash + marker + shade, not hue alone)
     [ ] Plain-language axis titles; minimal/no gridlines
@@ -15,3 +15,7 @@ Checking fig_color.png  against  PNAS figure spec
     [ ] Multi-panel labels present + consistent; text legible at print size
 --------------------------------------------------------
   0 FAIL  3 WARN  1 PASS
+  Profile: PNAS figures, evidence provisional, checked 2026-10-24, draft
+  Note: Not yet checked against a source: figures.caption, figures.panel_labels. Compare with the journal's current guidelines before you submit.
+  Note: PNAS is a draft profile. A person has not yet compared it with recent articles.
+  Requirement (submission, check by hand): Color mode RGB; files as TIFF, EPS, PDF, or PPT

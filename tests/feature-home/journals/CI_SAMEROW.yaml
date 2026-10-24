@@ -1,0 +1,8 @@
+id: CI_SAMEROW
+name: "Test: confidence intervals, same_row"
+sources:
+  fixture: {title: "Test fixture", accessed: 2026-10-24}
+evidence:
+  tables: {status: observed, sources: [fixture]}
+tables:
+  estimate_layout: {uncertainty: ci, placement: same_row, ci_format: brackets, ci_level: 0.9}

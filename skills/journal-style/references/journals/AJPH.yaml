@@ -1,0 +1,58 @@
+id: AJPH
+name: American Journal of Public Health
+aliases: [AJPH, "American Journal of Public Health", "Am J Public Health"]
+publisher: American Public Health Association
+extends: [families/ama]
+ready: draft
+
+sources:
+  ajph-instructions:
+    url: https://ajph.aphapublications.org/authorinstructions
+    accessed: 2026-10-24
+    kind: guideline
+  ajph-components:
+    url: https://ajph.aphapublications.org/authorinstructions/components
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables.stars: {status: guideline, sources: [ajph-components]}
+  tables.decimals: {status: guideline, sources: [ajph-components]}
+  figures: {status: guideline, sources: [ajph-components]}
+  figures.caption: {status: provisional, sources: []}
+
+requirements:
+  tables:
+    - {rule: "Report exponentiated estimates (e.g., odds ratios) with 95% CIs, and write b or B, not β; P values are unnecessary when 95% CIs are shown, and NS is never used", stage: submission, source: ajph-components}
+    - {rule: "Statistical methods go in the table footnotes, not the title; at most one column head per column", stage: submission, source: ajph-components}
+  figures:
+    - {rule: "One readable, well-described panel per figure; black-and-white graphs have at most 4 lines, with the legend inside the graphic area", stage: submission, source: ajph-components}
+
+tables:
+  stars:
+    use: false                    # P values are unnecessary when 95% CIs are shown
+  decimals:
+    coef: 1                       # one decimal for proportions and effect measures is preferred
+    se: 1
+    descriptive: 1
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 300
+
+notes: |
+  AJPH follows the AMA Manual of Style (its instructions name the 10th edition). Tables and figures go at the end of the manuscript or in separate files.
+
+  Tables
+  - Report exponentiated estimates such as odds ratios with 95% CIs. P values are unnecessary when CIs are shown; when given, round them to 2 decimals. Never write "NS". Write b or B, not β.
+  - One decimal for proportions and effect measures is preferred.
+  - Put statistical methods in the footnotes, not the title. At most one column head per column.
+
+  Figures
+  - One readable, well-described panel per figure. Black-and-white graphs have at most 4 lines and a legend inside the graphic area.
+  - Print quality at 300 dpi or more with a 150-line screen.
+  - AJPH gives no widths, fonts, or file formats.

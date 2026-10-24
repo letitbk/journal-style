@@ -181,6 +181,8 @@ def main():
             emit("WARN", "width", f"Width {m['width_in']}in matches no column spec (allowed: {opts}). Resize to a column width.")
     elif aw and not m["width_in"]:
         emit("WARN", "width", "Could not determine physical width — verify it fits a column spec by hand.")
+    elif not aw:
+        emit("WARN", "width", f"The {journal} profile gives no column width. Check the journal's instructions by hand.")
 
     # color / grayscale
     if m["kind"] == "raster":
@@ -188,7 +190,7 @@ def main():
         if m["grayscale"]:
             emit("PASS", "color", "Grayscale — safe for B/W printing.")
         else:
-            lvl = "WARN" if pol == "grayscale_preferred" else "PASS"
+            lvl = "WARN" if pol in ("grayscale_preferred", "grayscale_required") else "PASS"
             emit(lvl, "color", f"Color figure. {journal} policy: {pol}. Ensure series stay distinct in grayscale (dash/marker/shade, not hue alone).")
     if m["note"].strip():
         print(f"    · {m['note'].strip()}")
@@ -208,6 +210,8 @@ def main():
     print(f"  Profile: {journal} figures, evidence {R['status']}, checked {R['checked'] or 'never'}, {R['ready']}")
     for w in R["warnings"]:
         print(f"  Note: {w}")
+    for r in R["requirements"]:
+        print(f"  Requirement ({r['stage']}, check by hand): {r['rule']}")
     sys.exit(1 if REPORT["FAIL"] else 0)
 
 

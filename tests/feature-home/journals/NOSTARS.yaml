@@ -1,0 +1,8 @@
+id: NOSTARS
+name: "Test: no significance stars"
+sources:
+  fixture: {title: "Test fixture", accessed: 2026-10-24}
+evidence:
+  tables: {status: observed, sources: [fixture]}
+tables:
+  stars: {use: false}

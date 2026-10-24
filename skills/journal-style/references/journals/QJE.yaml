@@ -1,0 +1,72 @@
+id: QJE
+name: Quarterly Journal of Economics
+aliases: [QJE, "Quarterly Journal of Economics", "Q J Econ"]
+publisher: Oxford University Press
+extends: []
+ready: draft
+
+sources:
+  qje-instructions:
+    url: https://academic.oup.com/qje/pages/Instructions_To_Authors
+    accessed: 2026-10-24
+    kind: guideline
+  stargazer-qje:
+    title: "R stargazer 5.2.3, style 'qje' (R/stargazer-internal.R, lines 481 to 487)"
+    accessed: 2026-10-24
+    kind: stargazer
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.caption: {status: guideline, sources: [qje-instructions]}
+  tables.rules: {status: guideline, sources: [qje-instructions]}
+  tables.stars: {status: stargazer, sources: [stargazer-qje]}
+  figures: {status: guideline, sources: [qje-instructions]}
+
+requirements:
+  tables:
+    - {rule: "Put tables at the end of the paper on separate pages; appendix tables are Table A.1, A.2", stage: submission, source: qje-instructions}
+  figures:
+    - {rule: "Figure titles and captions are typeset, so keep them out of the figure image", stage: publication, source: qje-instructions}
+    - {rule: "Supply high-resolution TIFF files after acceptance, with all fonts embedded", stage: publication, source: qje-instructions}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}"
+    numbering: roman              # "Heading (i.e., Table I) should be centered and use roman numerals."
+    align: center
+  rules:
+    style: booktabs
+    vertical_rules: false         # "vertical lines, colored text and shading should not be used"
+  stars:
+    legend: "* p < .1, ** p < .05, *** p < .01"
+    thresholds: [0.10, 0.05, 0.01]
+    symbols: ["*", "**", "***"]
+    leading_zero: false
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}"
+    numbering: roman
+  color:
+    policy: grayscale_preferred   # print figures appear in black and white
+    redundant_encoding: true
+    color_ok_for: [online_version]
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 600
+  file_formats: [tiff, pdf, eps]
+
+notes: |
+  Tables
+  - Headings are centered and use Roman numerals (Table I). The title goes above and any explanatory footnote below.
+  - No vertical lines, colored text, or shading.
+  - Put tables at the end of the paper on separate pages. Appendix tables are Table A.1, A.2.
+  - QJE states no rule on stars, standard errors, or leading zeros. The star settings come from the R stargazer `qje` style (* .1, ** .05, *** .01) and are a secondary source.
+
+  Figures
+  - Figure numbers are centered and use Roman numerals (Figure I). Titles and captions are typeset, so keep them out of the image.
+  - At least 300 dpi for color or tone images and 600 dpi for line drawings. High-resolution TIFF files after acceptance, with fonts embedded.
+  - The print version is black and white, so figures and captions must work in both print and online.
+  - QJE gives no figure width, so the checker skips the width check.

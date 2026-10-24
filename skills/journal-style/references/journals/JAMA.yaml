@@ -1,0 +1,59 @@
+id: JAMA
+name: JAMA
+aliases: [JAMA, "Journal of the American Medical Association"]
+publisher: American Medical Association
+extends: [families/ama]
+ready: draft
+
+sources:
+  jama-ifa:
+    url: https://jamanetwork.com/journals/jama/pages/instructions-for-authors
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables.caption: {status: guideline, sources: [jama-ifa]}
+  tables.rules: {status: guideline, sources: [jama-ifa]}
+  figures: {status: guideline, sources: [jama-ifa]}
+  figures.caption: {status: provisional, sources: []}
+
+requirements:
+  tables:
+    - {rule: "Build tables as editable Word tables, never as images; do not draw extra lines or rules, because the table grid shows each cell", stage: submission, source: jama-ifa}
+    - {rule: "Single spacing, 10 or 12 point type; a title of 10 to 15 words at most", stage: submission, source: jama-ifa}
+    - {rule: "Report frequencies as No. (%), not percentages alone; no decimal places in percentages when the sample is under 100", stage: publication, source: jama-ifa}
+  figures:
+    - {rule: "At revision, each main figure is a separate file in .ai, .emf, .eps, .pdf, .wmf, or .xls; files native to statistics software are not accepted", stage: publication, source: jama-ifa}
+    - {rule: "Color photographs in RGB; make colors distinguishable", stage: submission, source: jama-ifa}
+    - {rule: "Figure footnotes use letters (a, b, c), not symbols. JAMA redraws figures in its own style", stage: publication, source: jama-ifa}
+
+tables:
+  caption:
+    label: "Table {n}."
+  rules:
+    style: word_grid              # a requirement: an editable Word table with no extra rules drawn
+    vertical_rules: false
+  submission_format: docx
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  raster:
+    dpi_min_halftone: 350
+    dpi_min_line_art: 600
+  file_formats: [ai, emf, eps, pdf, wmf, xls]
+
+notes: |
+  JAMA follows the AMA Manual of Style, 11th edition.
+
+  Tables
+  - Editable Word tables, never images. Do not draw extra lines or rules; the table grid shows the cells. The renderer's .docx output is the file to start from; the booktabs PNG is only a preview.
+  - Single spacing, 10 or 12 point type. A descriptive title of 10 to 15 words at most. Footnotes marked with superscript letters (a, b, c).
+  - Estimates with 95% CIs in the form 0.8 (95% CI, −0.2 to 1.8). P values to the nearest thousandth between .001 and .01 and to the nearest hundredth above, P<.001 and P>.99 at the extremes, never alone without the data. Frequencies as No. (%).
+  - JAMA does not mention significance asterisks; prefer exact P values.
+
+  Figures
+  - At least 350 ppi for illustrations and photographs and 600 ppi for line drawings. RGB color, with colors that are easy to tell apart.
+  - No pie charts or 3-D graphs. Use data markers for point estimates, not bars.
+  - At first submission figures can be a separate file or at the end of the manuscript; at publication each figure is its own file. JAMA redraws figures in its own style.

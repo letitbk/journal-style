@@ -2,7 +2,7 @@
 Linting PNAS_lm.html  against  PNAS
 --------------------------------------------------------
   ✓ [PASS] caption: Caption / table number present.
-  ✓ [PASS] uncertainty: SE/CI in parentheses present.
+  ✓ [PASS] uncertainty: Confidence intervals present.
   ✓ [PASS] stars: Significance stars present.
   ✓ [PASS] stars-leading-zero: Star legend leading-zero style matches journal.
   ✓ [PASS] sample-size: N / observations reported.
@@ -11,3 +11,8 @@ Linting PNAS_lm.html  against  PNAS
   ✓ [PASS] leading-zero: Leading-zero style consistent with journal.
 --------------------------------------------------------
   0 FAIL  0 WARN  8 PASS
+  Profile: PNAS tables, evidence provisional, checked 2026-10-24, draft
+  Note: Not yet checked against a source: tables. Compare with the journal's current guidelines before you submit.
+  Note: PNAS is a draft profile. A person has not yet compared it with recent articles.
+  Requirement (submission, check by hand): Submit tables in editable Word, RTF, or LaTeX, with a brief title above and footnotes below; avoid multipart tables
+  Requirement (submission, check by hand): Say whether a number after ± is a standard error (SEM) or a standard deviation (SD), and give the P value

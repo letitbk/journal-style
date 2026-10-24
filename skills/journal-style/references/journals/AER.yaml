@@ -1,0 +1,24 @@
+id: AER
+name: American Economic Review
+aliases: [AER, "American Economic Review", "Am Econ Rev"]
+publisher: American Economic Association
+extends: [families/aea]
+ready: draft
+
+evidence:
+  tables.caption: {status: provisional, sources: []}
+
+tables:
+  caption:
+    label: "Table {n}"            # the caption form is not in the style guide; compare with a recent issue
+  gof_rows: [nobs, r2]
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}"
+
+notes: |
+  AER follows the AEA style guide (see the aea family): no significance stars, standard errors in parentheses, only horizontal lines, a zero before every decimal point.
+
+  The style guide does not give the caption form for tables or figures, column widths, or font sizes. Compare those with a recent AER article before you submit.

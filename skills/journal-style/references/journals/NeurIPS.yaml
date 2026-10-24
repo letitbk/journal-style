@@ -1,0 +1,68 @@
+id: NeurIPS
+name: Conference on Neural Information Processing Systems
+aliases: [NeurIPS, NIPS, "Neural Information Processing Systems"]
+publisher: NeurIPS Foundation
+extends: []
+ready: draft
+
+venue_template:
+  name: neurips_2026.sty
+  version: "2026-01-29"
+  stage:
+    review: "\\usepackage{neurips_2026}"
+    publication: "\\usepackage[final]{neurips_2026}"
+  url: https://neurips.cc/Conferences/2026/CallForPapers
+
+sources:
+  neurips-template:
+    url: https://neurips.cc/Conferences/2026/CallForPapers
+    title: "NeurIPS 2026 LaTeX template (neurips_2026.sty and neurips_2026.tex)"
+    accessed: 2026-10-24
+    kind: guideline
+  neurips-handbook:
+    url: https://neurips.cc/Conferences/2026/MainTrackHandbook
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.rules: {status: guideline, sources: [neurips-template]}
+  tables.caption: {status: guideline, sources: [neurips-template]}
+  figures: {status: guideline, sources: [neurips-template]}
+
+requirements:
+  tables:
+    - {rule: "Nine content pages including figures and tables; one more page for the camera-ready version", stage: submission, source: neurips-handbook}
+  figures:
+    - {rule: "Only Type 1 or embedded TrueType fonts in the PDF", stage: submission, source: neurips-template}
+    - {rule: "Figures must stay legible when printed in black and white or in color", stage: submission, source: neurips-template}
+
+tables:
+  caption:
+    position: above               # "The table number and title always appear before the table."
+  rules:
+    style: booktabs
+    vertical_rules: false         # "publication-quality tables do not contain vertical rules"
+
+figures:
+  caption:
+    position: below               # "The figure number and caption always appear after the figure."
+    format: "Figure {n}:"
+    title_case: sentence          # captions in lower case except the first word and proper nouns
+  color:
+    policy: color_ok
+    redundant_encoding: true
+  width:
+    full_width_in: 5.5            # the text block is 5.5 in wide
+
+notes: |
+  NeurIPS papers use the neurips_2026 style file. Use `render_table.R --fragment` and paste the table inside the template's table environment.
+
+  Tables
+  - Number and title before the table. Use booktabs; no vertical rules.
+  - The template states no rules on stars, decimals, or intervals; those settings are provisional.
+
+  Figures
+  - Number and caption after the figure, in lower case except the first word and proper nouns.
+  - Color is fine, but figures must stay legible in black and white. The text block is 5.5 in wide, 10 point Times.
+  - Only Type 1 or embedded TrueType fonts. Nine content pages including figures and tables.

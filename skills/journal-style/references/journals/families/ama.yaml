@@ -1,0 +1,42 @@
+# families/ama.yaml — AMA Manual of Style conventions, as the JAMA Network
+# instructions state them. The manual itself is behind a paywall and was not read.
+name: AMA style journals
+
+sources:
+  jama-ifa:
+    url: https://jamanetwork.com/journals/jama/pages/instructions-for-authors
+    title: "JAMA Network instructions for authors (AMA Manual of Style, 11th edition)"
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.estimate_layout: {status: guideline, sources: [jama-ifa]}
+  tables.stars: {status: guideline, sources: [jama-ifa]}
+  figures: {status: provisional, sources: []}
+  figures.anti_patterns: {status: guideline, sources: [jama-ifa]}
+
+requirements:
+  tables:
+    - {rule: "Report P values to the nearest thousandth between .001 and .01, to the nearest hundredth at .01 or more, and as P<.001 or P>.99 at the extremes; never give P values alone without the data compared", stage: publication, source: jama-ifa}
+    - {rule: "Mark footnotes with superscript letters (a, b, c) in the order the items appear", stage: publication, source: jama-ifa}
+  figures:
+    - {rule: "No pie charts or 3-D graphs; use data markers for point estimates, not bars", stage: submission, source: jama-ifa}
+
+tables:
+  estimate_layout:
+    uncertainty: ci
+    placement: same_row
+    ci_format: parentheses
+    ci_separator: " to "          # "95% CI −0.2% to 1.8%"
+    ci_level: 0.95
+  stars:
+    legend: "*P < .05  **P < .01  ***P < .001"   # AMA style: italic capital P, no leading zero
+    p_symbol: "P"
+    p_italic: true
+    leading_zero: false           # "P = .13"
+  decimals:
+    leading_zero: true
+
+figures:
+  anti_patterns: [pie, 3d, bars_for_point_estimates, dynamite_bar_with_error_caps, chartjunk]

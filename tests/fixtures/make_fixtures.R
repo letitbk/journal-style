@@ -29,3 +29,6 @@ png("fig_color.png", width = 3.42, height = 2.6, units = "in", res = 300)
 par(mar = c(4, 4, 1, 1)); plot(d$wt, d$mpg, pch = 16, col = c("red", "darkgreen", "blue")[d$cyl],
                                xlab = "Weight", ylab = "Miles per gallon")
 dev.off()
+# tests/fixtures/fig_300dpi.png is fig_color.png saved by Pillow with 300 dpi metadata,
+# because R's png() device does not record a resolution:
+#   python3 -c "from PIL import Image; Image.open('fig_color.png').save('fig_300dpi.png', dpi=(300, 300))"

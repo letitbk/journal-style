@@ -13,7 +13,7 @@ Record where every rule came from. A wrong rule with a confident label is worse 
    mkdir -p ~/.config/journal-style/journals
    cp references/journals/_template.yaml ~/.config/journal-style/journals/<ID>.yaml
    ```
-   Use a short id with no spaces, e.g., `JPE`. Look in `references/journals/families/` for a family that matches, e.g., `aea` for AEA journals, `apa7` for journals that follow APA style, `ama` for journals that follow AMA style, or `acm` for venues that use the `acmart` template. Use no family if none fits. Do not choose a family only because the field is similar.
+   Use a short id with no spaces, e.g., `JPE`. Look in `references/journals/families/` for a family that matches. The families are `sociology` (ASA-style sociology journals), `nature-portfolio`, `aea` (AEA journals), `apa7` (journals that follow APA style), `ama` (journals that follow AMA style), and `acm` (venues that use the `acmart` template). Use no family if none fits. Do not choose a family only because the field is similar.
 
 3. **Fill in only what the guidelines state.**
    - Mark those settings `guideline`, with the source ID.

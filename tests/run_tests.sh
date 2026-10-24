@@ -91,6 +91,69 @@ t "Python statsmodels path writes the PNG" test -s "$TMP/sm.png"
 python3 "$S/render_table.py" --model "$TMP/sm.pkl" --journal nope --out "$TMP/sm2" > /dev/null 2>&1; st=$?
 t "Python wrapper passes on R's failure" test "$st" -ne 0
 
+echo "== Intervals, no stars, fragments"
+FH="$HERE/feature-home"; FO="$TMP/feat"; mkdir -p "$FO"
+for j in CI_SAMEROW CI_STACKEDBELOW CI_SEPARATECOLUMN NOSTARS; do
+  JOURNAL_STYLE_HOME="$FH" Rscript "$S/render_table.R" --estimates "$FX/tidy.csv" --journal "$j" \
+    --out "$FO/$j" --formats tex,html,png > /dev/null 2>&1
+  t "$j renders a PNG" test -s "$FO/$j.png"
+done
+# the fixture's interval for "Years of education" in Model 1 is asymmetric: 0.060 to 0.110 around 0.083
+t "interval on the same row as the estimate" grep -qF 'Years of education & 0.083*** [0.060, 0.110]' "$FO/CI_SAMEROW.tex"
+t "interval stacked below the estimate" grep -qF '& [0.060, 0.110] & [0.034, 0.090]' "$FO/CI_STACKEDBELOW.tex"
+t "interval in its own column" grep -qF '& 0.083*** & [0.060, 0.110] & 0.061***' "$FO/CI_SEPARATECOLUMN.tex"
+t "interval column header names the level" grep -qF '90\% CI' "$FO/CI_SEPARATECOLUMN.tex"
+t "same-row layout has no SE row" sh -c "! grep -q '(0.012)' '$FO/CI_SAMEROW.tex'"
+t "note names the interval level" grep -qF '90\% confidence intervals in brackets' "$FO/CI_SAMEROW.tex"
+t "HTML keeps the interval" grep -qF '[0.060, 0.110]' "$FO/CI_SAMEROW.html"
+t "no-stars table has no stars" sh -c "! grep -qE '[0-9]\*' '$FO/NOSTARS.tex'"
+t "no-stars table has no star legend" sh -c "! grep -q 'p < ' '$FO/NOSTARS.tex'"
+JOURNAL_STYLE_HOME="$FH" python3 "$S/lint_table.py" "$FO/NOSTARS.tex" --journal NOSTARS > "$TMP/ns.txt" 2>&1; st=$?
+t "no-stars table passes the no-stars lint" status_is "$st" 0
+JOURNAL_STYLE_HOME="$FH" python3 "$S/lint_table.py" "$FO/CI_SAMEROW.tex" --journal NOSTARS > "$TMP/ns2.txt" 2>&1; st=$?
+t "starred table fails the no-stars lint" status_is "$st" 1
+t "the failure names the rule" has "$TMP/ns2.txt" "[FAIL] no-stars"
+printf '\\begin{table*}\\caption*{x}\\begin{tabular}{ll}\\toprule a & 1.20 (0.21)\\\\ \\bottomrule\\end{tabular}\\end{table*}\nNote: SE.\n' > "$TMP/tstar.tex"
+JOURNAL_STYLE_HOME="$FH" python3 "$S/lint_table.py" "$TMP/tstar.tex" --journal NOSTARS > "$TMP/ns3.txt" 2>&1
+t "table* and caption* do not count as stars" has "$TMP/ns3.txt" "[PASS] no-stars"
+JOURNAL_STYLE_HOME="$FH" python3 "$S/lint_table.py" "$FO/CI_SAMEROW.tex" --journal CI_SAMEROW > "$TMP/ci.txt" 2>&1
+t "interval lint finds the intervals" has "$TMP/ci.txt" "[PASS] uncertainty: Confidence intervals present."
+JOURNAL_STYLE_HOME="$FH" Rscript "$S/render_table.R" --model "$FX/lm1.rds" --journal CI_SAMEROW \
+  --out "$FO/lm_ci" --formats tex > /dev/null 2>&1
+t "R models get intervals at the profile's level" grep -qF '90\% confidence intervals' "$FO/lm_ci.tex"
+JOURNAL_STYLE_HOME="$FH" python3 "$S/render_table.py" --model "$TMP/sm.pkl" --journal CI_SAMEROW \
+  --out "$FO/sm_ci" --formats tex > /dev/null 2>&1
+t "statsmodels results get intervals" grep -qE '[0-9]\*+ \[-?[0-9.]+, -?[0-9.]+\]' "$FO/sm_ci.tex"
+t "statsmodels interval level is recorded" grep -q '0.9' "$FO/sm_ci_estimates.csv"
+Rscript "$S/render_table.R" --estimates "$FX/tidy.csv" --journal ASR --out "$FO/frag" --formats tex \
+  --fragment --title "Table 2. Education and health" > /dev/null 2>&1
+t "fragment has no float" sh -c "! grep -q '^\\\\begin{table}' '$FO/frag.tex'"
+t "fragment caption drops the table number" grep -qF '\caption{Education and health}' "$FO/frag.tex"
+printf '\\documentclass{article}\n\\usepackage{booktabs,threeparttable}\n\\begin{document}\n\\begin{table}[t]\n\\input{frag.tex}\n\\end{table}\n\\end{document}\n' > "$FO/wrap.tex"
+(cd "$FO" && pdflatex -interaction=nonstopmode -halt-on-error wrap.tex > /dev/null 2>&1)
+t "fragment compiles inside an article wrapper" test -s "$FO/wrap.pdf"
+
+echo "== Every shipped journal"
+PO="$TMP/pilot"; mkdir -p "$PO"
+for j in $(python3 "$S/profiles.py" list --json | python3 -c "import json,sys; print(' '.join(r['id'] for r in json.load(sys.stdin)))"); do
+  Rscript "$S/render_table.R" --estimates "$FX/tidy.csv" --journal "$j" --out "$PO/$j" --formats tex,html,docx,png > /dev/null 2>&1; st=$?
+  t "$j: table renders in all four formats" sh -c "[ $st -eq 0 ] && [ -s '$PO/$j.tex' ] && [ -s '$PO/$j.html' ] && [ -s '$PO/$j.docx' ] && [ -s '$PO/$j.png' ]"
+  python3 "$S/lint_table.py" "$PO/$j.tex" --journal "$j" > "$PO/$j.lint" 2>&1
+  t "$j: its own table passes its lint" grep -q ' 0 FAIL  0 WARN' "$PO/$j.lint"
+  python3 "$S/check_figure.py" "$FX/fig_single.pdf" --journal "$j" > "$PO/$j.fig" 2>&1; st=$?
+  t "$j: figure check runs and reports the profile" sh -c "[ $st -eq 0 ] && grep -q 'Profile: $j figures' '$PO/$j.fig'"
+done
+t "AER table has no stars" sh -c "! grep -qE '[0-9]\*' '$PO/AER.tex'"
+t "QJE table is numbered with Roman numerals" grep -qF 'Table I' "$PO/QJE.tex"
+t "AJPS legend uses a dagger" grep -qF '†p < .10' "$PO/AJPS.tex"
+t "JAMA intervals use 'to'" grep -qF '(0.060 to 0.110)' "$PO/JAMA.tex"
+t "Science width check finds its 3 column widths" sh -c "python3 '$S/check_figure.py' '$FX/fig_single.pdf' --journal Science | grep -q 'double_col 4.76in'"
+python3 "$S/check_figure.py" "$FX/fig_300dpi.png" --journal PNAS > "$TMP/dpi.txt" 2>&1
+t "PNAS needs 1000 dpi for line art" has "$TMP/dpi.txt" "300 dpi (line-art min 1000)"
+python3 "$S/check_figure.py" "$FX/fig_single.pdf" --journal AER > "$TMP/aerfig.txt" 2>&1
+t "a profile without widths says so" has "$TMP/aerfig.txt" "gives no column width"
+t "requirements are printed for checking by hand" has "$PO/AER.lint" "Requirement (publication, check by hand)"
+
 echo "== Checkers"
 python3 "$S/lint_table.py" "$FX/tidy.csv" --journal ASR > "$TMP/l.txt" 2>&1; st=$?
 t "a CSV fails the lint (exit 1)" status_is "$st" 1

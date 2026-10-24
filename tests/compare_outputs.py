@@ -3,7 +3,7 @@
 
 Usage: compare_outputs.py <baseline dir> <new dir>
 Text files must match line for line, except for the differences allowed in
-baselines/ALLOWED_DIFFS.md: checker reports may add "Profile:" and "Note:" lines,
+baselines/ALLOWED_DIFFS.md: checker reports may add "Profile:", "Note:", and "Requirement" lines,
 and the VISION checklist line now names the profile file. PNG files must match
 pixel for pixel. Every baseline file must exist in the new folder.
 """
@@ -11,7 +11,7 @@ import os, re, sys
 from PIL import Image, ImageChops
 
 base, new = sys.argv[1], sys.argv[2]
-ADDED = re.compile(r"^  (Profile|Note): ")
+ADDED = re.compile(r"^  (Profile|Note|Requirement \(.*?\)): ")
 VISION = re.compile(r"^  VISION checklist \(.*\):$")
 
 def lines(path):

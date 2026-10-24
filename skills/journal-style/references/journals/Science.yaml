@@ -1,0 +1,91 @@
+id: Science
+name: Science
+aliases: [Science, "Science (AAAS)"]
+publisher: AAAS
+extends: []
+ready: draft
+
+sources:
+  science-initial:
+    url: https://www.science.org/content/page/instructions-preparing-initial-manuscript
+    accessed: 2026-10-24
+    kind: guideline
+  science-revised:
+    url: https://www.science.org/content/page/instructions-preparing-revised-manuscript
+    accessed: 2026-10-24
+    kind: guideline
+  science-policies:
+    url: https://www.science.org/content/page/science-journals-editorial-policies
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  figures: {status: guideline, sources: [science-initial, science-revised]}
+  tables: {status: provisional, sources: []}
+  tables.caption: {status: guideline, sources: [science-initial]}
+  tables.stars: {status: guideline, sources: [science-initial]}
+  tables.decimals: {status: guideline, sources: [science-initial]}
+
+requirements:
+  tables:
+    - {rule: "Do not report results only as significant or not; give P values (two significant digits are usually enough) and a standard error or confidence interval", stage: submission, source: science-policies}
+  figures:
+    - {rule: "Initial submission: embed figures in the .docx or PDF at 300 dpi", stage: submission, source: science-initial}
+    - {rule: "Revised submission: separate vector files (PDF, EPS, AI) or TIFF at 300 dpi or more; no figures embedded in Word and no upsampled images", stage: publication, source: science-revised}
+    - {rule: "Avoid red and green together", stage: submission, source: science-initial}
+
+tables:
+  caption:
+    position: above
+    label: "Table {n}."
+    title_case: sentence
+  stars:
+    legend: "*P < 0.05, †P < 0.01, ‡P < 0.001"
+    symbols: ["*", "†", "‡"]      # footnote symbols go in the order *, †, ‡, §, ¶, #, **
+    p_symbol: "P"
+    p_italic: true                # variables are always italic
+    leading_zero: true
+  decimals:
+    leading_zero: true            # "Use leading zeros on all decimals"
+
+figures:
+  caption:
+    position: below
+    format: "Fig. {n}."
+    title_bold: true              # a short figure title in bold
+  color:
+    policy: color_ok              # Science says to avoid grayscale
+    redundant_encoding: true
+    avoid: [red_green_together]
+  fonts:
+    in_figure: sans_serif
+    family: Helvetica
+    min_pt_at_print: 5
+    prefer_pt: 7
+  panel_labels:
+    style: "A, B, C (10 pt, bold, capital)"
+    position: top_left_of_panel
+  width:
+    single_col_cm: 5.7
+    double_col_cm: 12.1
+    full_width_cm: 18.4
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_line_art: 300
+  line_width_min_pt: 0.5
+  file_formats: [pdf, eps, ai, tiff]
+
+notes: |
+  Figures
+  - Widths of 5.7 cm (1 column), 12.1 cm (2 columns), or 18.4 cm (3 columns).
+  - Sans serif text, Helvetica preferred, about 7 pt and never under 5 pt. Panel labels are capital letters in 10 pt bold. Symbols at least 6 pt, lines at least 0.5 pt at final size.
+  - Avoid red and green together. Science also says to avoid grayscale, so color is fine as long as series stay distinct.
+  - Initial submission: figures embedded in the .docx or PDF at 300 dpi. Revised submission: separate vector files (PDF, EPS, or AI, preferred) or TIFF at 300 dpi or more, never upsampled, never embedded in Word.
+  - Captions start with "Fig. 1." and a short title in bold.
+
+  Tables
+  - Captions start with a label, e.g., "Table 1.", followed by a brief descriptive title.
+  - Footnotes use symbols in the order *, †, ‡, §, ¶, #, **.
+  - Variables such as P are italic. Use a leading zero on all decimals (0.3, 0.55).
+  - Report P values rather than only significant or not, and give a standard error or a confidence interval.
+  - Science's pages do not state rules for table lines; those settings are provisional.

@@ -33,7 +33,7 @@ Rscript scripts/render_table.R --estimates tidy.csv --journal Demography --out t
 python3 scripts/lint_table.py tbl.tex --journal ASR
 ```
 
-The renderer writes PNG, LaTeX, HTML, and Word files. Open the PNG and compare it with the journal's `notes` in `references/journals/<ID>.yaml`. Use `--coef-map labels.json` for readable row labels. Details and the checklist are in `references/tables.md`.
+The renderer writes PNG, LaTeX, HTML, and Word files. Open the PNG and compare it with the journal's `notes` in `references/journals/<ID>.yaml`. Use `--coef-map labels.json` for readable row labels. For venues with their own LaTeX template, e.g., CHI or NeurIPS, add `--fragment` and paste the table inside the template's table environment. If the journal reports confidence intervals, give the CSV `conf.low`, `conf.high`, and `conf.level` columns. Details and the checklist are in `references/tables.md`.
 
 ## 3. Figures
 

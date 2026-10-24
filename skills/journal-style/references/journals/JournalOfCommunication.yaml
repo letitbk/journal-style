@@ -1,0 +1,50 @@
+id: JournalOfCommunication
+name: Journal of Communication
+aliases: [JournalOfCommunication, "Journal of Communication", JoC, "J Commun"]
+publisher: Oxford University Press, for the International Communication Association
+extends: [families/apa7]
+ready: draft
+
+sources:
+  joc-instructions:
+    url: https://academic.oup.com/joc/pages/General_Instructions
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  figures.fonts: {status: guideline, sources: [joc-instructions]}
+
+requirements:
+  tables:
+    - {rule: "One main Word (.docx) document in strict APA 7 style; tables, figures, and endnotes after the references", stage: submission, source: joc-instructions}
+  figures:
+    - {rule: "Alt text for every image, placed directly under the figure legend", stage: submission, source: joc-instructions}
+    - {rule: "Text in tables and figures in 12 point Times New Roman", stage: submission, source: joc-instructions}
+
+tables:
+  submission_format: docx
+  typography:
+    font: "Times New Roman"
+    size_pt: 12
+
+figures:
+  caption:
+    position: above               # APA puts the figure number and title above the image
+    format: "Figure {n}"
+  fonts:
+    in_figure: serif
+    family: "Times New Roman"     # the journal asks for 12 point Times New Roman in figures
+    min_pt_at_print: 12
+
+notes: |
+  The Journal of Communication follows APA 7 strictly (see the apa7 family).
+
+  Tables
+  - "Table 1" in bold above an italic title in title case. No vertical borders and no borders around every cell. Notes below: general, then specific, then probability.
+  - Stars as *p < .05. **p < .01. ***p < .001., with no leading zero for p. Report exact p values unless p < .001. CIs in square brackets.
+  - One Word document; tables, figures, and endnotes after the references. Text in 12 point Times New Roman.
+
+  Figures
+  - Alt text is required for every image, directly under the figure legend.
+  - The journal asks for 12 point Times New Roman in figures, which overrides APA's sans serif 8 to 14 point advice.
+  - The journal gives no file formats, resolution, or widths.

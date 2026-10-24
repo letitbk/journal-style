@@ -5,7 +5,7 @@ as the two old YAML files at commit 4aab510.
 Tables are compared with R modifyList semantics (deep merge, null deletes), which is
 what render_table.R used. Figures are compared with the old shallow merge that
 check_figure.py used. Keys that only described provenance are left out, because
-they moved to `evidence`. Keys added on purpose are listed in NEW_KEYS.
+they moved to `evidence`. Keys added or corrected on purpose are listed in NEW_KEYS.
 """
 import copy, os, subprocess, sys, yaml
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,7 +15,10 @@ from profiles import resolve, deep_merge
 
 OLD = "4aab510"
 META = {"name", "publisher", "grounded", "grounded_qualitative", "grounding_note", "verify", "era_note", "note"}
-NEW_KEYS = {("SocialForces", "tables"): [("rules", "header_shading")]}
+NEW_KEYS = {("SocialForces", "tables"): [("rules", "header_shading")],
+            # Phase 2: checked against the PNAS guidelines on 2026-10-24 (see ALLOWED_DIFFS.md)
+            ("PNAS", "figures"): [("raster", "dpi_min_line_art"), ("raster", "dpi_min_combination"),
+                                  ("line_width_min_pt",), ("fonts", "family")]}
 
 def old(path):
     return yaml.safe_load(subprocess.check_output(["git", "-C", ROOT, "show", f"{OLD}:{path}"]))
@@ -48,7 +51,8 @@ for j in t["profiles"]:
     for section, o in (("tables", strip(deep_merge(t["defaults"], t["profiles"][j]))),
                        ("figures", strip({**f["defaults"], **f["profiles"][j]}))):
         n = resolve(j, section)["settings"]
-        for path in NEW_KEYS.get((j, section), []): n = drop(n, path)
+        for path in NEW_KEYS.get((j, section), []):
+            n, o = drop(n, path), drop(o, path)
         d = diff(o, strip(n))
         print(f"{j:<13} {section:<8} {'same' if not d else 'DIFFERENT'}")
         for line in d: print(line)

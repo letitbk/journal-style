@@ -1,0 +1,66 @@
+# families/aea.yaml — the American Economic Association style guide.
+# The rules below appear word for word in the style guides of AER, AEJ: Applied,
+# Policy, Macro, Micro, AER: Insights, JEL, and P&P (checked 2026-10-24).
+name: American Economic Association journals
+
+sources:
+  aea-style:
+    url: https://www.aeaweb.org/journals/aer/style-guide
+    accessed: 2026-10-24
+    kind: guideline
+  aea-submissions:
+    url: https://www.aeaweb.org/journals/aer/submissions
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.stars: {status: guideline, sources: [aea-style]}
+  tables.estimate_layout: {status: guideline, sources: [aea-style]}
+  tables.rules: {status: guideline, sources: [aea-style]}
+  tables.decimals: {status: guideline, sources: [aea-style]}
+  tables.note: {status: guideline, sources: [aea-style]}
+  figures: {status: provisional, sources: []}
+  figures.raster: {status: guideline, sources: [aea-style]}
+  figures.file_formats: {status: guideline, sources: [aea-style]}
+
+requirements:
+  tables:
+    - {rule: "The style guide is optional at submission and required for accepted articles", stage: publication, source: aea-submissions}
+    - {rule: "No more than 9 columns including row headings, in portrait orientation", stage: publication, source: aea-style}
+    - {rule: "Mark sections of a table as Panel A, Panel B, and so on; footnote keys are lowercase letters (a, b, c)", stage: publication, source: aea-style}
+  figures:
+    - {rule: "Each figure in its own vector file (PDF, EPS, AI, WMF, or PPT), with panels as Figure1a, Figure1b", stage: publication, source: aea-style}
+    - {rule: "Photographs, maps, and screenshots at 300 dpi", stage: publication, source: aea-style}
+
+tables:
+  stars:
+    use: false                    # "Do not use asterisks to denote significance of estimation results."
+  estimate_layout:
+    uncertainty: se
+    placement: stacked_below      # parentheses are required; the guide does not say where they go
+    wrapper: parentheses
+  rules:
+    style: booktabs
+    vertical_rules: false         # "Use only horizontal lines and additional blank space"
+  decimals:
+    leading_zero: true            # "0.357, not .357"
+  note:
+    order: [nobs, units, estimator, se_type, source]   # the source note comes after other notes
+
+figures:
+  raster:
+    dpi_min_halftone: 300
+  file_formats: [pdf, eps, ai, wmf, ppt]
+
+notes: |
+  Tables
+  - Do not use asterisks or other markers for significance. Report standard errors in parentheses.
+  - Only horizontal lines and blank space; no vertical lines and no shading.
+  - A zero before every decimal point (0.357, not .357).
+  - At most 9 columns including row headings, portrait orientation. Sections are Panel A, Panel B. Footnote keys are lowercase letters. A source note comes after the other notes.
+  - The style guide is optional at submission and required once the paper is accepted.
+
+  Figures
+  - Vector files (PDF, EPS, AI, WMF, or PPT), one file per figure; panels as Figure1a, Figure1b. Photographs and other images at 300 dpi.
+  - The style guide gives no column widths, font sizes, or color rules.

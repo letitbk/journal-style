@@ -26,6 +26,7 @@ Each journal has one YAML file in this folder. A file holds the journal's table 
 | `tables` | Table settings used by `render_table.R` and `lint_table.py` |
 | `figures` | Figure settings used by `check_figure.py` |
 | `notes` | Prose notes on the journal's house style, shown to the agent as the reference to compare against |
+| `venue_template` | For venues that set rules through a LaTeX class: `{name, version, class_options, stage, url}` |
 | `replace` | Local files only. `true` replaces a shipped profile instead of patching it |
 
 ## Evidence
@@ -97,7 +98,7 @@ python3 scripts/profiles.py resolve --journal ajs --section tables
 }
 ```
 
-- `status` is the weakest status among the section's evidence entries. The order from weakest is `provisional`, `stargazer`, `observed`, `guideline`.
+- `status` is the weakest status among the section's evidence entries. The order from weakest is `provisional`, `stargazer`, `observed`, `guideline`. `statuses` lists every status the section uses, strongest first.
 - `checked` is the oldest access date among the sources the section uses.
 - Dates are ISO strings.
 - `warnings` lists, for example, a `provisional` status, a `draft` profile, or a check more than 12 months old.

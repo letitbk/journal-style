@@ -25,7 +25,9 @@ python3 scripts/render_table.py --model res.pkl[,res2.pkl] --journal AJS --out t
 Rscript scripts/render_table.R --estimates tidy.csv --journal Demography --out tbl
 ```
 
-A tidy CSV has the columns `term`, `estimate`, and `std.error`, and optionally `p.value`, `model`, and `nobs`. Use it for Stata output, marginaleffects in Python, or any other precomputed estimates.
+A tidy CSV has the columns `term`, `estimate`, and `std.error`, and optionally `p.value`, `model`, and `nobs`. Use it for Stata output, marginaleffects in Python, or any other precomputed estimates. For journals that report confidence intervals, add `conf.low`, `conf.high`, and `conf.level`, e.g., 0.95. Without the interval columns the table shows standard errors and says so.
+
+Add `--fragment` for a venue with its own LaTeX template, e.g., ACM `acmart` or the NeurIPS style. The `.tex` file then holds only the caption, the table, and the notes, to paste inside the template's own `table` environment.
 
 `--coef-map labels.json`, e.g., `{"wt": "Vehicle weight"}`, gives readable row labels. Never ship raw names such as `factor(cyl)6`. Show reference categories.
 

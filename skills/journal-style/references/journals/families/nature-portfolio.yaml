@@ -1,0 +1,35 @@
+# families/nature-portfolio.yaml — rules shared across Nature Portfolio journals.
+# Column widths differ between journals, so each journal sets its own.
+name: Nature Portfolio journals
+
+sources:
+  nhb-formatting:
+    url: https://www.nature.com/nathumbehav/submission-guidelines/aip-and-formatting
+    accessed: 2026-10-24
+    kind: guideline
+  ncomms-submit:
+    url: https://www.nature.com/ncomms/submit/how-to-submit
+    accessed: 2026-10-24
+    kind: guideline
+
+evidence:
+  figures.fonts: {status: guideline, sources: [nhb-formatting]}
+  figures.panel_labels: {status: guideline, sources: [ncomms-submit]}
+  figures.raster: {status: guideline, sources: [nhb-formatting]}
+  figures.color: {status: guideline, sources: [ncomms-submit]}
+
+figures:
+  fonts:
+    in_figure: sans_serif         # "Use a 5–7 pt san serif font" (Nature Human Behaviour)
+    min_pt_at_print: 5
+    max_pt: 7
+  panel_labels:
+    style: "a, b, c (lowercase, bold)"
+    position: top_left_of_panel
+  raster:
+    dpi_min_halftone: 300
+  color:
+    policy: color_ok
+    redundant_encoding: true
+    avoid: [red_green_contrast]   # "recolour green-and-red heatmaps" (Nature Communications)
+    mode: RGB

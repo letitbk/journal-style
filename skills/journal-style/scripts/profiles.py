@@ -180,6 +180,7 @@ def resolve(name, section="tables"):
 
     statuses = [p["status"] for p in provenance.values()] or ["provisional"]
     status = min(statuses, key=lambda s: STATUS_ORDER.index(s) if s in STATUS_ORDER else 0)
+    mix = sorted(set(statuses), key=lambda s: -STATUS_ORDER.index(s) if s in STATUS_ORDER else 0)
     used_ids = {i for p in provenance.values() for i in p["sources"]}
     dates = [iso(sources[i]["accessed"]) for i in used_ids if i in sources and sources[i].get("accessed")]
     checked = min(dates) if dates else None
@@ -204,10 +205,12 @@ def resolve(name, section="tables"):
         "requirements": requirements,
         "provenance": provenance,
         "status": status,
+        "statuses": mix,
         "checked": checked,
         "ready": jdoc.get("ready", "draft"),
         "sources": {k: {kk: iso(vv) for kk, vv in v.items()} for k, v in sources.items()},
         "notes": jdoc.get("notes", ""),
+        "venue_template": jdoc.get("venue_template"),
         "files": files,
         "warnings": warnings,
     }
@@ -222,7 +225,7 @@ def list_journals():
         local = any(not p.startswith(SHIPPED) for p in t["files"])
         dates = [d for d in (t["checked"], f["checked"]) if d]
         rows.append({"id": jid, "name": t["name"], "ready": t["ready"],
-                     "tables": t["status"], "figures": f["status"],
+                     "tables": "+".join(t["statuses"]), "figures": "+".join(f["statuses"]),
                      "checked": min(dates) if dates else None,
                      "where": "local" if local else "shipped"})
     return rows
@@ -246,10 +249,12 @@ def main():
             if args.json:
                 json.dump(rows, sys.stdout, indent=1); sys.stdout.write("\n")
             else:
-                print(f"{'id':<16}{'tables':<13}{'figures':<13}{'checked':<12}{'ready':<9}{'where':<9}name")
+                w = {k: max([len(str(r[k] or "-")) for r in rows] + [len(k)]) + 2
+                     for k in ("id", "tables", "figures", "checked", "ready", "where")}
+                print("".join(f"{k:<{w[k]}}" for k in w) + "name")
                 for r in rows:
-                    print(f"{r['id']:<16}{r['tables']:<13}{r['figures']:<13}{str(r['checked'] or '-'):<12}"
-                          f"{r['ready']:<9}{r['where']:<9}{r['name']}")
+                    print("".join(f"{str(r[k] or '-'):<{w[k]}}" for k in w) + r["name"])
+                print("\nStatuses run from strongest to weakest: guideline, observed, stargazer, provisional.")
         elif args.cmd == "paths":
             for d in [os.path.join(private_home(), "journals"), SHIPPED]:
                 print(d + ("" if os.path.isdir(d) else "   (does not exist)"))

@@ -1,0 +1,71 @@
+id: APSR
+name: American Political Science Review
+aliases: [APSR, "American Political Science Review", "Am Polit Sci Rev"]
+publisher: Cambridge University Press
+extends: []
+ready: draft
+
+sources:
+  apsr-preparing:
+    url: https://www.cambridge.org/core/journals/american-political-science-review/information/author-instructions/preparing-your-materials
+    accessed: 2026-10-24
+    kind: guideline
+  cup-artwork:
+    url: https://www.cambridge.org/core/services/authors/journals-artwork-guide
+    accessed: 2026-10-24
+    kind: guideline
+  stargazer-apsr:
+    title: "R stargazer 5.2.3, style 'apsr' (R/stargazer-internal.R, lines 332 to 347)"
+    accessed: 2026-10-24
+    kind: stargazer
+
+evidence:
+  tables: {status: provisional, sources: []}
+  tables.stars: {status: stargazer, sources: [stargazer-apsr]}
+  figures: {status: guideline, sources: [apsr-preparing, cup-artwork]}
+
+requirements:
+  tables:
+    - {rule: "Initial submissions need not follow APSR style; place tables where they fall in the text or use a placeholder", stage: submission, source: apsr-preparing}
+    - {rule: "Number tables and figures in Arabic numerals with captions; appendix items are Table A.1, Figure A.1", stage: publication, source: apsr-preparing}
+  figures:
+    - {rule: "Provide image descriptions (alt text) for all figures", stage: publication, source: apsr-preparing}
+    - {rule: "Readable in grayscale: vary colors by intensity and tone, in steps of 15 to 85 percent", stage: publication, source: apsr-preparing}
+    - {rule: "Separate figure files unless you use LaTeX; captions go at the end of the text, not in the figure files", stage: publication, source: cup-artwork}
+
+tables:
+  caption:
+    label: "Table {n}."
+  stars:
+    legend: "*p < .1; **p < .05; ***p < .01"
+    thresholds: [0.10, 0.05, 0.01]
+    symbols: ["*", "**", "***"]
+    leading_zero: false
+
+figures:
+  caption:
+    position: below
+    format: "Figure {n}."
+  color:
+    policy: grayscale_required    # "Should be readable in grayscale."
+    redundant_encoding: true
+  fonts:
+    in_figure: sans_serif
+    family: "Arial, Courier, Symbol, Times, or Times New Roman"
+    min_pt_at_print: 9            # Cambridge artwork guide: approved fonts in 9 pt
+  raster:
+    dpi_min_halftone: 300
+    dpi_min_combination: 600
+    dpi_min_line_art: 1000
+  line_width_min_pt: 0.3
+  file_formats: [tiff, eps]
+
+notes: |
+  Tables
+  - Initial submissions need not follow APSR style. Number tables in Arabic numerals with a caption; appendix tables are Table A.1, A.2.
+  - APSR states no rule on stars, standard errors, decimals, or table lines. The star settings come from the R stargazer `apsr` style (* .1, ** .05, *** .01) and are a secondary source.
+
+  Figures
+  - Readable in grayscale: vary colors by intensity and tone (steps of 15 to 85 percent), not only by hue. Color is not normally printed unless agreed or paid for.
+  - Alt text is required for every figure.
+  - From the Cambridge artwork guide: 1000 dpi for line art, 600 dpi for combination figures, 300 dpi for halftones; TIFF recommended, EPS preferred for vector files; fonts Arial, Courier, Symbol, Times, or Times New Roman at 9 pt; lines at least 0.3 pt; separate files unless you use LaTeX; captions at the end of the text, not in the figure files.
